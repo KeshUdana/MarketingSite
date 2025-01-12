@@ -1,7 +1,16 @@
-const express = require("express");
-const { addUser } = require("../controllers/userController");
-const router = express.Router();
+import { Router } from "express";
+import User from "./models/user";
+const router = Router();
 
-router.post("/", addUser);
+// Add a new user
+router.post("/api/users", async (req, res) => {
+  try {
+    const user = new User(req.body);
+    await user.save();
+    res.status(201).json({ message: "User added successfully!" });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
 
-module.exports = router;
+export default router;
