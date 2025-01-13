@@ -12,7 +12,7 @@ app.use(cors());
 app.use(bodyParser.json())
 
 //Import Routes
-const userRoutes=require("./routes/user");
+const userRoutes=require("./routes/user").default;
 const retailerRoutes=require("./rotues/retailer");
 
 app.use("/api/users",userRoutes);
