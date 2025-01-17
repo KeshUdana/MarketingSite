@@ -4,7 +4,7 @@ import styles from './SignInPage.module.css';
 const SignInPage: FunctionComponent = () => {
   return (
     <div className={styles.signInPage}>
-      <Image
+      <Image 
         className={styles.signInPageChild}
         alt="Vector Decoration"
         src="/images/Vector 6.svg"
