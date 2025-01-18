@@ -1,0 +1,355 @@
+.loginPageChild {
+    position: absolute;
+    top: 68px;
+    left: 232px;
+    max-height: 100%;
+    width: 21px;
+}
+
+.homeAboutUs {
+    position: absolute;
+    top: 42px;
+    left: 49px;
+    line-height: 36px;
+    font-weight: 900;
+    white-space: pre-wrap;
+}
+
+.component1Icon {
+    position: absolute;
+    top: 10px;
+    left: calc(50% - 50px);
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    object-fit: contain;
+}
+
+.loginPageItem {
+    position: absolute;
+    top: -100px;
+    left: 613px;
+    width: 1044.5px;
+    height: 850px;
+    object-fit: contain;
+}
+
+.loginPageInner {
+    position: absolute;
+    top: 26.36px;
+    left: 1175.43px;
+    width: 62.8px;
+    height: 64.9px;
+    object-fit: contain;
+}
+
+.ellipseIcon {
+    position: absolute;
+    top: 26.36px;
+    left: 1234.43px;
+    width: 62.8px;
+    height: 64.9px;
+    object-fit: contain;
+}
+
+.loginPageChild1 {
+    position: absolute;
+    top: 26.36px;
+    left: 1295.43px;
+    width: 62.8px;
+    height: 64.9px;
+    object-fit: contain;
+}
+
+.icon {
+    position: absolute;
+    top: 48.81px;
+    left: 1201.81px;
+    width: 10px;
+    height: 20px;
+    overflow: hidden;
+}
+
+.icon1 {
+    position: absolute;
+    top: 49.81px;
+    left: 1257.26px;
+    width: 18px;
+    height: 18px;
+    overflow: hidden;
+}
+
+.icon2 {
+    position: absolute;
+    top: 46.81px;
+    left: 1315.71px;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+}
+
+.vectorIcon {
+    position: absolute;
+    top: 3497px;
+    left: 223px;
+    width: 11px;
+    height: 0px;
+}
+
+.welcomeBack {
+    position: relative;
+    line-height: 54px;
+    font-weight: 900;
+}
+
+.welcomeBackWrapper {
+    position: absolute;
+    top: 0px;
+    left: 1px;
+    height: 53.1px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: center;
+    font-size: 48px;
+    color: #333;
+}
+
+.enterYourCredentials {
+    position: absolute;
+    top: 53.1px;
+    left: 1px;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-block;
+    width: 372px;
+    height: 26.6px;
+}
+
+.name {
+    position: relative;
+    font-weight: 500;
+}
+
+.nameWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.frameChild {
+    width: 404px;
+    border-radius: 10px;
+    border: 1px solid #d9d9d9;
+    box-sizing: border-box;
+    height: 32px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.frameGroup {
+    position: absolute;
+    top: 111.73px;
+    left: 1px;
+    width: 404px;
+    height: 57.5px;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 13px;
+    font-family: Poppins;
+}
+
+.nameFrame {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.frameWrapper {
+    width: 404px;
+    border-radius: 5px;
+    border: 1px solid #d9d9d9;
+    box-sizing: border-box;
+    height: 32px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 0px 10px 10px;
+    font-size: 10px;
+    color: #d9d9d9;
+}
+
+.frameContainer {
+    position: absolute;
+    top: 139.39px;
+    left: 1px;
+    width: 404px;
+    height: 58.6px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.frameDiv {
+    position: absolute;
+    top: 217.93px;
+    left: 1px;
+    width: 404px;
+    height: 58.6px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.rememberFor30 {
+    position: absolute;
+    top: 0.31px;
+    left: 15px;
+    font-weight: 500;
+    display: inline-block;
+    width: 104px;
+    height: 15.5px;
+}
+
+.groupChild {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 2px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    width: 9px;
+    height: 10px;
+}
+
+.rememberFor30DaysParent {
+    position: absolute;
+    top: 298.69px;
+    left: 1px;
+    width: 119px;
+    height: 15.8px;
+    font-size: 9px;
+}
+
+.dontHaveAn {
+    white-space: pre-wrap;
+}
+
+.signUp {
+    color: #0f3dde;
+}
+
+.dontHaveAnContainer {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-weight: 500;
+    display: inline-block;
+    width: 229px;
+    height: 23.2px;
+}
+
+.dontHaveAnAccountSignUpWrapper {
+    position: absolute;
+    top: 394px;
+    left: 102px;
+    width: 229px;
+    height: 23.2px;
+}
+
+.name5 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-weight: 500;
+    display: none;
+}
+
+.nameWrapper3 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 43px;
+    height: 21px;
+    display: none;
+}
+
+.frameItem {
+    position: absolute;
+    top: -6px;
+    left: 1px;
+    border-radius: 5px;
+    background-color: #f97c7c;
+    width: 403px;
+    height: 44px;
+}
+
+.frameParent2 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 404px;
+    height: 32px;
+}
+
+.login {
+    position: absolute;
+    top: 6px;
+    left: 185px;
+    font-size: 13px;
+    font-family: Lato;
+    color: #fff;
+}
+
+.frameParent1 {
+    position: absolute;
+    top: 334px;
+    left: 0px;
+    width: 404px;
+    height: 38px;
+    font-family: Poppins;
+}
+
+.forgotPassword {
+    position: absolute;
+    top: 217.93px;
+    left: 318px;
+    font-size: 10px;
+    font-weight: 500;
+    color: #0c2a92;
+    display: inline-block;
+    width: 83px;
+    height: 16.6px;
+}
+
+.frameParent {
+    position: absolute;
+    top: 210px;
+    left: 105px;
+    width: 405px;
+    height: 417.2px;
+    font-size: 14px;
+    color: #000;
+}
+
+.loginPage {
+    width: 100%;
+    position: relative;
+    background-color: #fff;
+    height: 1024px;
+    overflow: hidden;
+    text-align: left;
+    font-size: 16px;
+    color: #4a4a4a;
+    font-family: Lato;
+}

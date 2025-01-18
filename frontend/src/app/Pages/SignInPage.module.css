@@ -1,0 +1,611 @@
+.signInPageChild {
+    position: absolute;
+    top: 68px;
+    left: 232px;
+    max-height: 100%;
+    width: 21px;
+}
+
+.homeAboutUs {
+    position: absolute;
+    top: 42px;
+    left: 49px;
+    font-size: 16px;
+    line-height: 36px;
+    font-weight: 900;
+    color: #4a4a4a;
+    white-space: pre-wrap;
+    text-align: left;
+}
+
+.component1Icon {
+    position: absolute;
+    top: 10px;
+    left: calc(50% - 50px);
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    object-fit: contain;
+}
+
+.signInPageItem {
+    position: absolute;
+    top: -112px;
+    left: 621px;
+    width: 1044.5px;
+    height: 850px;
+    object-fit: contain;
+}
+
+.signInPageInner {
+    position: absolute;
+    top: 26.36px;
+    left: 1175.43px;
+    width: 62.8px;
+    height: 64.9px;
+    object-fit: contain;
+}
+
+.ellipseIcon {
+    position: absolute;
+    top: 26.36px;
+    left: 1234.43px;
+    width: 62.8px;
+    height: 64.9px;
+    object-fit: contain;
+}
+
+.signInPageChild1 {
+    position: absolute;
+    top: 26.36px;
+    left: 1295.43px;
+    width: 62.8px;
+    height: 64.9px;
+    object-fit: contain;
+}
+
+.icon {
+    position: absolute;
+    top: 48.81px;
+    left: 1201.81px;
+    width: 10px;
+    height: 20px;
+    overflow: hidden;
+}
+
+.icon1 {
+    position: absolute;
+    top: 49.81px;
+    left: 1257.26px;
+    width: 18px;
+    height: 18px;
+    overflow: hidden;
+}
+
+.icon2 {
+    position: absolute;
+    top: 46.81px;
+    left: 1315.71px;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+}
+
+.vectorIcon {
+    position: absolute;
+    top: 3497px;
+    left: 223px;
+    width: 11px;
+    height: 0px;
+}
+
+.getStartedWith {
+    position: relative;
+    line-height: 54px;
+    font-weight: 900;
+}
+
+.getStartedWithModdeWrapper {
+    align-self: stretch;
+    height: 53.1px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.signUpTo {
+    align-self: stretch;
+    position: relative;
+    font-weight: 500;
+    display: inline-block;
+    height: 48px;
+    flex-shrink: 0;
+}
+
+.weAreLooking {
+    width: 372px;
+    position: relative;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-block;
+    height: 75px;
+    flex-shrink: 0;
+}
+
+.signUpToSellOnModdeParent {
+    width: 446px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 25px;
+    text-align: left;
+    font-size: 40px;
+    color: #000;
+}
+
+.frameParent {
+    position: absolute;
+    top: 250px;
+    left: 49px;
+    width: 529px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 59px;
+    font-size: 48px;
+    color: #333;
+}
+
+.name {
+    position: relative;
+    font-weight: 500;
+}
+
+.nameWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.frameChild {
+    width: 404px;
+    border-radius: 10px;
+    border: 1px solid #d9d9d9;
+    box-sizing: border-box;
+    height: 32px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.frameGroup {
+    position: absolute;
+    top: 270.73px;
+    left: 142px;
+    width: 404px;
+    height: 57.5px;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    font-size: 13px;
+    font-family: Poppins;
+}
+
+.rectangleDiv {
+    position: absolute;
+    top: 809px;
+    left: 140px;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+    width: 520px;
+    height: 82px;
+}
+
+.enterYourFirst {
+    position: absolute;
+    top: 838px;
+    left: 160px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #a4a4a4;
+}
+
+.signInPageChild2 {
+    position: absolute;
+    top: 948px;
+    left: 140px;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+    width: 520px;
+    height: 82px;
+}
+
+.signInPageChild3 {
+    position: absolute;
+    top: 1227px;
+    left: 751px;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+    width: 520px;
+    height: 82px;
+}
+
+.signInPageChild4 {
+    position: absolute;
+    top: 1227px;
+    left: 132px;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+    width: 520px;
+    height: 82px;
+}
+
+.signInPageChild5 {
+    position: absolute;
+    top: 1401px;
+    left: 132px;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+    width: 1139px;
+    height: 82px;
+}
+
+.signInPageChild6 {
+    position: absolute;
+    top: 1562px;
+    left: 129px;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+    width: 1142px;
+    height: 82px;
+}
+
+.signInPageChild7 {
+    position: absolute;
+    top: 1087px;
+    left: 140px;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+    width: 294px;
+    height: 82px;
+}
+
+.signInPageChild8 {
+    position: absolute;
+    top: 1087px;
+    left: 494px;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+    width: 777px;
+    height: 82px;
+}
+
+.signInPageChild9 {
+    position: absolute;
+    top: 809px;
+    left: 751px;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+    width: 520px;
+    height: 82px;
+}
+
+.enterYourLast {
+    position: absolute;
+    top: 838px;
+    left: 774px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #a4a4a4;
+}
+
+.signInPageChild10 {
+    position: absolute;
+    top: 948px;
+    left: 751px;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+    width: 520px;
+    height: 82px;
+}
+
+.enterYourEMail {
+    position: absolute;
+    top: 977px;
+    left: 776px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #a4a4a4;
+}
+
+.enterCompanyName {
+    position: absolute;
+    top: 1256px;
+    left: 158px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #a4a4a4;
+}
+
+.enterCompanyWebsite {
+    position: absolute;
+    top: 1256px;
+    left: 768px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #a4a4a4;
+}
+
+.firstName {
+    position: absolute;
+    top: 780px;
+    left: 145px;
+}
+
+.jobTitle {
+    position: absolute;
+    top: 919px;
+    left: 146px;
+}
+
+.mobileNumber {
+    position: absolute;
+    top: 1058px;
+    left: 146px;
+}
+
+.companyName {
+    position: absolute;
+    top: 1198px;
+    left: 148px;
+}
+
+.doYouOperate {
+    position: absolute;
+    top: 1342px;
+    left: 132px;
+    text-align: left;
+    display: inline-block;
+    width: 1131px;
+}
+
+.whatIsYour {
+    position: absolute;
+    top: 1519px;
+    left: 129px;
+    text-align: left;
+    display: inline-block;
+    width: 1131px;
+}
+
+.sSellerPrivacy {
+    color: inherit;
+}
+
+.pleaseTakeAMomentToReview {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.blankLine {
+    margin: 0;
+}
+
+.pleaseTakeAContainer {
+    position: absolute;
+    top: 1680px;
+    left: 129px;
+    text-align: left;
+    display: inline-block;
+    width: 1131px;
+}
+
+.companyWebsite {
+    position: absolute;
+    top: 1198px;
+    left: 768px;
+}
+
+.emailAddress {
+    position: absolute;
+    top: 919px;
+    left: 759px;
+}
+
+.lastName {
+    position: absolute;
+    top: 774px;
+    left: 758px;
+}
+
+.rectangle12variant3Child {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    left: 0%;
+    background-color: #d9d9d9;
+}
+
+.rectangle12variant3 {
+    position: absolute;
+    top: 1741px;
+    left: 129px;
+    background-color: #a77575;
+    width: 20px;
+    height: 20px;
+}
+
+.buttonChild {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    left: 0%;
+    border-radius: 10px;
+    background-color: #333;
+}
+
+.getStarted {
+    position: absolute;
+    top: 33.33%;
+    left: 23.67%;
+    letter-spacing: 0.02em;
+    line-height: 137.3%;
+    text-transform: uppercase;
+}
+
+.buttonItem {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    left: 0%;
+    border-radius: 10px;
+    background-color: #f97c7c;
+}
+
+.getStarted1 {
+    position: absolute;
+    top: 33.33%;
+    left: 33.82%;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 900;
+    font-family: Lato;
+    text-align: center;
+}
+
+.button {
+    position: absolute;
+    top: 1831px;
+    left: 129px;
+    width: 207px;
+    height: 66px;
+    text-align: left;
+    font-size: 17px;
+    color: #fff;
+    font-family: 'Hind Vadodara';
+}
+
+.footerChild {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 0px 158px 0px 0px;
+    background-color: #333;
+    width: 1400px;
+    height: 453px;
+}
+
+.loremIpsumHas {
+    position: absolute;
+    top: 133px;
+    left: 51px;
+    line-height: 25px;
+    display: inline-block;
+    width: 439px;
+    height: 136px;
+}
+
+.footerItem {
+    position: absolute;
+    top: 296px;
+    left: 50px;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    width: 263px;
+    height: 52px;
+}
+
+.footerInner {
+    position: absolute;
+    top: 296px;
+    left: 313px;
+    background-color: #fff;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    width: 143px;
+    height: 52px;
+}
+
+.getInTouch {
+    position: absolute;
+    top: 256px;
+    left: 50px;
+    line-height: 25px;
+    font-weight: 900;
+    color: #e8e8e8;
+}
+
+.enterYourEmail {
+    position: absolute;
+    top: 309px;
+    left: 63px;
+    line-height: 25px;
+}
+
+.send {
+    position: absolute;
+    top: 310px;
+    left: 365px;
+    letter-spacing: 0.02em;
+    line-height: 159.3%;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Hind Vadodara';
+    color: #000;
+}
+
+.component2Icon {
+    position: absolute;
+    top: 55px;
+    left: calc(50% - 654px);
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    object-fit: contain;
+}
+
+.footer {
+    position: absolute;
+    top: 1991px;
+    left: 0px;
+    width: 1400px;
+    height: 453px;
+    text-align: left;
+    font-size: 16px;
+    color: #f4f4f4;
+}
+
+.enterYourPosition {
+    position: absolute;
+    top: 976px;
+    left: 160px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #a4a4a4;
+}
+
+.signInPage {
+    width: 100%;
+    position: relative;
+    background-color: #fff;
+    height: 2444px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 24px;
+    color: #000;
+    font-family: Lato;
+}
