@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './SignInPage.module.css';
+import { FunctionComponent } from 'react';
 
 const SignInPage: FunctionComponent = () => {
   return (
@@ -7,7 +8,7 @@ const SignInPage: FunctionComponent = () => {
       <Image
         className={styles.signInPageChild}
         alt="Vector Decoration"
-        src="/images/Vector 6.svg"
+        src="/images/Vector 6.png"
         width={100}
         height={100}
       />
@@ -31,49 +32,49 @@ const SignInPage: FunctionComponent = () => {
       <Image
         className={styles.signInPageInner}
         alt="Ellipse Decoration"
-        src="/images/Ellipse 8.svg"
+        src="/images/Ellipse 8.png"
         width={200}
         height={200}
       />
       <Image
         className={styles.ellipseIcon}
         alt="Ellipse Decoration"
-        src="/images/Ellipse 9.svg"
+        src="/images/Ellipse 9.png"
         width={200}
         height={200}
       />
       <Image
         className={styles.signInPageChild1}
         alt="Ellipse Decoration"
-        src="/images/Ellipse 10.svg"
+        src="/images/Ellipse 10.png"
         width={200}
         height={200}
       />
       <Image
         className={styles.icon}
         alt="Icon 1"
-        src="/images/12967496761553233092 (1) 2.svg"
+        src="/images/12967496761553233092 (1) 2.png"
         width={50}
         height={50}
       />
       <Image
         className={styles.icon1}
         alt="Icon 2"
-        src="/images/14459920111530103316 2.svg"
+        src="/images/14459920111530103316 2.png"
         width={50}
         height={50}
       />
       <Image
         className={styles.icon2}
         alt="Icon 3"
-        src="/images/16304616191553750378 2.svg"
+        src="/images/16304616191553750378 2.png"
         width={50}
         height={50}
       />
       <Image
         className={styles.vectorIcon}
         alt="Vector Icon"
-        src="/images/Vector 13.svg"
+        src="/images/Vector 13.png"
         width={100}
         height={100}
       />

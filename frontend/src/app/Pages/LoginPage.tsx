@@ -7,7 +7,7 @@ const LoginPage = () => {
       <Image
         className={styles.loginPageChild}
         alt="Vector Decoration"
-        src="/images/Vector 6.svg"
+        src="/images/Vector 6.png"
         width={100} // Set appropriate width
         height={100} // Set appropriate height
       />
@@ -25,55 +25,55 @@ const LoginPage = () => {
         className={styles.loginPageItem}
         alt="Group Image"
         src="/images/Group 5.png"
-        width={300}
-        height={300}
+        width={200}
+        height={100}
       />
       <Image
         className={styles.loginPageInner}
         alt="Ellipse Decoration"
-        src="/images/Ellipse 8.svg"
+        src="/images/Ellipse 8.png"
         width={200}
         height={200}
       />
       <Image
         className={styles.ellipseIcon}
         alt="Ellipse Decoration"
-        src="/images/Ellipse 9.svg"
+        src="/images/Ellipse 9.png"
         width={200}
         height={200}
       />
       <Image
         className={styles.loginPageChild1}
         alt="Ellipse Decoration"
-        src="/images/Ellipse 10.svg"
+        src="/images/Ellipse 10.png"
         width={200}
         height={200}
       />
       <Image
         className={styles.icon}
         alt="Icon 1"
-        src="/images/12967496761553233092 (1) 2.svg"
+        src="/images/12967496761553233092 (1) 2.png"
         width={50}
         height={50}
       />
       <Image
         className={styles.icon1}
         alt="Icon 2"
-        src="/images/14459920111530103316 2.svg"
+        src="/images/14459920111530103316 2.png"
         width={50}
         height={50}
       />
       <Image
         className={styles.icon2}
         alt="Icon 3"
-        src="/images/16304616191553750378 2.svg"
+        src="/images/16304616191553750378 2.png"
         width={50}
         height={50}
       />
       <Image
         className={styles.vectorIcon}
         alt="Vector Icon"
-        src="/images/Vector 13.svg"
+        src="/images/Vector 13.png"
         width={100}
         height={100}
       />
@@ -119,7 +119,7 @@ const LoginPage = () => {
             <span className={styles.dontHaveAn}>
               {`Don’t have an account? `}
             </span>
-            <span className={styles.signUp}>Sign Up</span>
+            <a href="/sign-up"><span className={styles.signUp}>Sign Up</span></a>
           </div>
         </div>
         <div className={styles.frameParent1}>
