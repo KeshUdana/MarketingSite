@@ -24,14 +24,14 @@ export default function Header() {
           <Link href="/" className="hover:text-[#f56d6d] transition duration-300">
             Home
           </Link>
-          <Link href="#about" className="hover:text-[#f56d6d] transition duration-300">
-            About Us
+          <Link href="#users" className="hover:text-[#f56d6d] transition duration-300">
+            For Users
           </Link>
-          <Link href="/login" className="hover:text-[#f56d6d] transition duration-300">
-            Login
+          <Link href="business" className="hover:text-[#f56d6d] transition duration-300">
+            For Business
           </Link>
           <Link href="#contact" className="hover:text-[#f56d6d] transition duration-300">
-            Contact Us
+            About us
           </Link>
         </div>
 

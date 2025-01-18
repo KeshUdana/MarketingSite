@@ -48,9 +48,15 @@ export default function Features() {
               </div>
               <h3 className="text-lg font-bold mb-2 text-[#333]">{feature.title}</h3>
               <p className="text-[#666] text-sm leading-relaxed">{feature.description}</p>
+              
             </div>
+            
           ))}
         </div>
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
+      <button className={`${styles.ctaButton} shadow-lg`}>Request a Demo</button>
+</div>
+
       </div>
     </section>
   )
