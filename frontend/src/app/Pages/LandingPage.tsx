@@ -29,9 +29,6 @@ export default function LandingPage() {
       <section id="Team">
         <Testimonials />
       </section>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }

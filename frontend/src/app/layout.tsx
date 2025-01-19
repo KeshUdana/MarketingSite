@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Lato } from 'next/font/google';
 import './globals.css';
-import Header from "./Components/Header"
+import Header from './Components/Header';
+import Footer from './pages/Footer';
 
 const lato = Lato({
   subsets: ['latin'],
@@ -20,10 +21,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className={lato.className}>
+      <body className="flex flex-col min-h-screen">
         <Header />
-        {children}
+        <main className="flex-grow">{children}</main>
+        <Footer />
       </body>
     </html>
   );
