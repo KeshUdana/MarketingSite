@@ -1,5 +1,5 @@
 {
-  "type":"module",
+  "type": "module",
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
@@ -18,7 +18,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongodb": "^6.12.0",
-    "mongoose": "^8.9.4"
+    "mongoose": "^8.9.5"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"

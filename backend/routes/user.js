@@ -1,17 +1,22 @@
-import { Router } from "express";
-import User from "../models/user.js";  // .js extension is needed
+// Backend: Express (routes/users.js)
+import express from "express";
+import User from "../models/user.js";  // Ensure the correct path and file extension for your model
 
-const router = Router();
+const router = express.Router(); // Use express.Router()
 
-// Add a new user
-router.post("/api/users", async (req, res) => {
+// POST route to handle form submission
+router.post("/submit-waitlist", async (req, res) => {
+  const { name, email } = req.body;
+
   try {
-    const user = new User(req.body);
-    await user.save();
-    res.status(201).json({ message: "User added successfully!" });
+    // Save the user to the database
+    const newUser = new User({ name, email });
+    await newUser.save();
+    res.status(201).json({ message: "User added to the waitlist!" });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    console.error("Error saving user:", error);
+    res.status(500).json({ message: "Error saving user to the database" });
   }
 });
 
-export default router;
+export default router; // Export the router

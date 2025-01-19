@@ -3,15 +3,48 @@
 import { useState } from "react";
 import Image from "next/image";
 
+// Define a type for the form data
+interface FormData {
+  name: string;
+  email: string;
+}
+
 const LoginPage = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [formData, setFormData] = useState<FormData>({ name: "", email: "" });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("User added to the waitlist:", { name, email });
-    setSubmitted(true); // Show success message after submission
+  // Handle input change
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  
+    
+    try {
+      const response = await fetch("http://localhost:5000/api/submit-waitlist", {  // Use your Express API URL here
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json(); // Parse the response as JSON
+         console.log("Backend Response:", result);
+  
+      if (response.ok) {
+        console.log("User added to the waitlist:", formData);
+        setSubmitted(true);
+      } else {
+        console.error("Failed to submit to the waitlist.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -20,10 +53,10 @@ const LoginPage = () => {
         {/* Hero Banner */}
         <div className="relative">
           <Image
-            className="w-full h-56 object-cover rounded-b-lg" // Full-width image with bottom-rounded corners
+            className="w-full h-56 object-cover rounded-b-lg"
             alt="Hero"
             src="/images/user.jpg"
-            width={800} // Ensures the image scales properly
+            width={800}
             height={300}
           />
         </div>
@@ -51,8 +84,9 @@ const LoginPage = () => {
               <input
                 type="text"
                 id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Your full name"
                 required
@@ -70,8 +104,9 @@ const LoginPage = () => {
               <input
                 type="email"
                 id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Your email address"
                 required
