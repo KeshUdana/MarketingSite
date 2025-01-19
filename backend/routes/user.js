@@ -1,15 +1,14 @@
-// Backend: Express (routes/users.js)
 import express from "express";
-import User from "../models/user.js";  // Ensure the correct path and file extension for your model
+import User from "../models/user.js";
+console.log("mounted 1");
+const router = express.Router();  
 
-const router = express.Router(); // Use express.Router()
 
-// POST route to handle form submission
 router.post("/submit-waitlist", async (req, res) => {
+  console.log("mounted 2");
   const { name, email } = req.body;
 
   try {
-    // Save the user to the database
     const newUser = new User({ name, email });
     await newUser.save();
     res.status(201).json({ message: "User added to the waitlist!" });
@@ -19,4 +18,5 @@ router.post("/submit-waitlist", async (req, res) => {
   }
 });
 
-export default router; // Export the router
+
+export default router;
