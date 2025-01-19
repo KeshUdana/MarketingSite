@@ -1,6 +1,7 @@
-import Image from 'next/image'
-
-import styles from '../Pages/LandingPage.module.css'
+"use client";
+import Image from 'next/image';
+import { useRouter } from 'next/navigation'; // Import useRouter from next/navigation
+import styles from '../Pages/LandingPage.module.css';
 
 const features = [
   {
@@ -27,11 +28,17 @@ const features = [
     icon: "/images/rocket.png",
     bgColor: "bg-[#ffd4d4]"
   }
-]
+];
 
 export default function Features() {
+  const router = useRouter(); // Initialize the router
+
+  const handleRequest = () => {
+    router.push('/Retailer'); // Navigate to the SignInPage
+  };
+
   return (
-    <section className="py-20 bg-[#ffd4d4] rounded-tr-[400px] relative">
+    <section className="py-20 bg-[#ffd4d4] rounded-tr-[400px] relative min-h-screen flex flex-col justify-center">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <h2 className="text-4xl font-bold text-center mb-4 text-[#333]">What We Do</h2>
         <p className="text-2xl text-center mb-12 text-[#666]">For Your Business</p>
@@ -48,17 +55,18 @@ export default function Features() {
               </div>
               <h3 className="text-lg font-bold mb-2 text-[#333]">{feature.title}</h3>
               <p className="text-[#666] text-sm leading-relaxed">{feature.description}</p>
-              
             </div>
-            
           ))}
         </div>
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
-      <button className={`${styles.ctaButton} shadow-lg`}>Request a Demo</button>
-</div>
-
+          <button 
+            className={`${styles.ctaButton} shadow-lg`} 
+            onClick={handleRequest} // Attach the handler
+          >
+            Request
+          </button>
+        </div>
       </div>
     </section>
-  )
+  );
 }
-

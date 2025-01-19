@@ -1,4 +1,4 @@
-import Login from '../Pages/LoginPage'
+import Login from '../pages/LoginPage'
 
 export default function LoginPage() {
   return <Login />
