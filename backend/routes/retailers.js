@@ -1,6 +1,7 @@
-const express = require("express");
-const Retailer = require("./models/retailer");
-const router = express.Router();
+import { Router } from "express";
+import Retailer from "../models/retailer.js";  // Adjust based on your file structure
+
+const router = Router();
 
 // Add a new retailer
 router.post("/api/retailers", async (req, res) => {
@@ -13,4 +14,4 @@ router.post("/api/retailers", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

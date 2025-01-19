@@ -1,28 +1,29 @@
-const express=require("express")
-const mongoose=require("mongoose")
-const cors=require("cors")
-const bodyParser=require("body-parser")
-require("dotenv").config();
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import bodyParser from "body-parser";
+import dotenv from "dotenv";
+import userRoutes from "./routes/user.js";  // .js extension is needed
+import retailerRoutes from "./routes/retailers.js";  // .js extension is needed
 
-const app =express();
-const PORT=process.env.PORT||5000
+dotenv.config();
 
-//MiddelWare here bn
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+// Middleware
 app.use(cors());
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
-//Import Routes
-const userRoutes=require("./routes/user").default;
-const retailerRoutes=require("./rotues/retailer");
+// Routes
+app.use("/api/users", userRoutes);
+app.use("/api/retailers", retailerRoutes);
 
-app.use("/api/users",userRoutes);
-app.use("/api/retailers",retailerRoutes);
-
-//MongoDB connection
+// MongoDB connection
 mongoose
-    .connect.log(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:true})
-    .then(()=>{
-        console.log("Connected to Mongo DB")
-        app.listen(PORT,()=>console.log(`Server running on port ${PORT}`));
-    })
-    .catch((error)=>console.log(error.message));
+  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log("Connected to Mongo DB");
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  })
+  .catch((error) => console.log(error.message));

@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose, { Schema, model } from "mongoose";
 
-const retailerSchema = new mongoose.Schema({
+const retailerSchema = new Schema({
   firstname: { 
     type: String, 
     required: [true, "First name is required"] 
@@ -40,4 +40,5 @@ const retailerSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Retailer", retailerSchema);
+const Retailer=mongoose.model("Retailer", retailerSchema);
+export default Retailer;

@@ -1,5 +1,6 @@
 import { Router } from "express";
-import User from "./models/user";
+import User from "../models/user.js";  // .js extension is needed
+
 const router = Router();
 
 // Add a new user
