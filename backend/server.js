@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import userRoutes from "./routes/user.js";  // Import routes from user.js
-import retailerRoutes from "./routes/retailers.js";
+import retailerRoutes from "./routes/retailers.js"; 
 dotenv.config();
 
 const app = express();
@@ -20,10 +20,10 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Mount routes on '/api'
 app.use("/api", userRoutes);  
-console.log("Server.js,mounted the api path")
+console.log("Server.js,mounted the user api path")
 
-app.use("/api",retailerRoutes);
-
+app.use("/api", retailerRoutes);
+console.log("Server.js,mounted the retailer api path")
 
 const startServer = (port) => {
   const server = app.listen(port, () => {

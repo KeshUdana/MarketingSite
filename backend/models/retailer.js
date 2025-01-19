@@ -1,18 +1,10 @@
-import mongoose, { Schema, model } from "mongoose";
+import mongoose from "mongoose";
+const { Schema, model } = mongoose;
 
 const retailerSchema = new Schema({
-  firstname: { 
+  name: { 
     type: String, 
-    required: [true, "First name is required"] 
-  },
-  lastname: { 
-    type: String, 
-    required: [true, "Last name is required"] 
-  },
-  mobile: { 
-    type: String, 
-    required: [true, "Mobile number is required"], 
-    unique: true 
+    required:true, 
   },
   email: { 
     type: String, 
@@ -22,23 +14,22 @@ const retailerSchema = new Schema({
   },
   company: { 
     type: String, 
-    required: [true, "Company name is required"] 
+    required: [true, "Company name is required"]
   },
-  companyWebsite: { 
+  title:{
+    type:String,
+    required:[true,"Job is required"]
+  },
+  mobile: { 
     type: String, 
-    match: [/^https?:\/\/.+/, "Please use a valid website URL"] 
+    required: [true, "Mobile number is required"], 
+    unique: true 
   },
-  message: { 
-    type: String 
-  },
-  annualRevenue: { 
-    type: String 
-  },
-  createdAt: { 
-    type: Date, 
-    default: Date.now 
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 
-const Retailer=mongoose.model("Retailer", retailerSchema);
+const Retailer=model("Retailer", retailerSchema);
 export default Retailer;
