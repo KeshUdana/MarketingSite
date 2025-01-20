@@ -6,7 +6,7 @@ console.log("Retiler router log eka")
 
 
 // Add a new retailer
-router.post("/get-demo", async (req, res) => {
+router.post("/demo", async (req, res) => {
   console.log("Retailer route hit for /submit-demo");
   console.log("Request body:", req.body);
   const { name, email, company, title, mobile } = req.body;
