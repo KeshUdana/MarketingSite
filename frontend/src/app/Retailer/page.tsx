@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SignInPage = () => {
   const [formData, setFormData] = useState<Record<string, string>>({
@@ -12,19 +12,45 @@ const SignInPage = () => {
     mobileNumber: "",
   });
 
-  // Explicitly typing the errors state
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
+  const [apiBaseUrl, setApiBaseUrl] = useState("");
+
+  // Initialize API base URL
+  useEffect(() => {
+    // Try to get from environment variable first
+    const envApiUrl = process.env.NEXT_PUBLIC_API_URL;
+    if (envApiUrl) {
+      setApiBaseUrl(envApiUrl);
+    } else {
+      // Fallback to default with dynamic port detection
+      const defaultPort = 5000;
+      const baseUrl = `http://localhost:${defaultPort}`;
+      
+      // Test the connection
+      fetch(`${baseUrl}/api/health-check`)
+        .then(response => {
+          if (response.ok) {
+            setApiBaseUrl(baseUrl);
+          } else {
+            console.warn("Default API port not responding, will attempt connection at runtime");
+          }
+        })
+        .catch(error => {
+          console.warn("Could not connect to default API port, will attempt connection at runtime");
+        });
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: "" })); // Clear error on change
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const validateForm = () => {
-    const newErrors: Record<string, string> = {}; // Explicitly typing this as Record<string, string>
+    const newErrors: Record<string, string> = {};
     if (!formData.Name) newErrors.Name = "Name is required.";
     if (!formData.email) {
       newErrors.email = "Email is required.";
@@ -50,32 +76,71 @@ const SignInPage = () => {
     }
 
     setIsLoading(true);
-    setSubmitMessage(""); // Reset any previous messages
+    setSubmitMessage("");
+
+    // Transform the data to match backend schema
+    const transformedData = {
+      name: formData.Name,
+      email: formData.email,
+      company: formData.companyName,
+      title: formData.jobTitle,
+      mobile: formData.mobileNumber
+    };
 
     try {
-      // Make API request to backend
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      // Try different ports if the default one fails
+      const ports = [5000, 5001, 5002, 5003,5004,5005,5006,5007,5008,5009,5010,5011,5012]; // Add more potential ports if needed
+      let response = null;
+      let connectionError = null;
 
-      if (response.ok) {
+      for (const port of ports) {
+        try {
+          const url = `http://localhost:${port}/api/retailers/demo`;
+          response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(transformedData),
+          });
+          
+          if (response.ok) {
+            setApiBaseUrl(`http://localhost:${port}`);
+            break;
+          }
+        } catch (error) {
+          connectionError = error;
+          continue;
+        }
+      }
+
+      if (response && response.ok) {
         const data = await response.json();
-        setSubmitMessage(data.message || "Thank you for signing up!");
+        setSubmitMessage(data.message || "Successfully registered!");
+        // Clear form on success
+        setFormData({
+          Name: "",
+          jobTitle: "",
+          email: "",
+          companyName: "",
+          mobileNumber: "",
+        });
+      } else if (!response) {
+        setSubmitMessage("Could not connect to the server. Please check if the server is running.");
+        console.error("Connection error:", connectionError);
       } else {
         const errorData = await response.json();
-        setSubmitMessage(errorData.message || "Something went wrong, please try again.");
+        setSubmitMessage(errorData.message || "Registration failed. Please try again.");
       }
     } catch (error) {
-      setSubmitMessage("Network error, please try again.");
+      console.error("Error:", error);
+      setSubmitMessage("Network error. Please check your connection and try again.");
     } finally {
       setIsLoading(false);
     }
   };
 
+  // Rest of your JSX remains the same until the form section
   return (
     <div className="flex flex-col sm:flex-row min-h-screen bg-[#ffd4d4]">
       {/* Left Side: Descriptive Text */}
@@ -86,7 +151,7 @@ const SignInPage = () => {
         <p className="text-base sm:text-lg text-gray-600 mb-4">
           Sign up to sell on Modde. We are looking for Sri Lankan brands and
           sellers who share our passion for delivering quality products and
-          exceptional customer experiences. If that sounds like you, we’d love
+          exceptional customer experiences. If that sounds like you, we'd love
           for you to apply!
         </p>
         <div className="flex justify-center sm:justify-start">
@@ -128,7 +193,7 @@ const SignInPage = () => {
                 type={field.id === "email" ? "email" : field.id === "mobileNumber" ? "tel" : "text"}
                 id={field.id}
                 name={field.id}
-                value={formData[field.id as keyof typeof formData]} // Type assertion
+                value={formData[field.id as keyof typeof formData]}
                 onChange={handleChange}
                 required
                 className={`mt-1 block w-full p-3 border ${
@@ -156,7 +221,7 @@ const SignInPage = () => {
           {/* Success/Failure Message */}
           {submitMessage && (
             <div className="mt-4 text-center text-sm">
-              <p className={`text-lg ${submitMessage.includes("error") ? "text-red-500" : "text-green-500"}`}>
+              <p className={`text-lg ${submitMessage.includes("error") || submitMessage.includes("failed") || submitMessage.includes("Could not") ? "text-red-500" : "text-green-500"}`}>
                 {submitMessage}
               </p>
             </div>
