@@ -3,55 +3,42 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
+// Define types
+interface FormData {
+  name: string;
+  jobTitle: string;
+  email: string;
+  companyName: string;
+  mobileNumber: string;
+}
+
+interface ErrorState {
+  name?: string;
+  jobTitle?: string;
+  email?: string;
+  companyName?: string;
+  mobileNumber?: string;
+  submit?: string;
+  [key: string]: string | undefined; // Index signature added here
+}
+
 const SignInPage = () => {
-  const [formData, setFormData] = useState<Record<string, string>>({
-    Name: "",
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
     jobTitle: "",
     email: "",
     companyName: "",
     mobileNumber: "",
   });
-
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState<ErrorState>({});
   const [submitMessage, setSubmitMessage] = useState("");
   const [apiBaseUrl, setApiBaseUrl] = useState("");
 
-  // Initialize API base URL
-  useEffect(() => {
-    // Try to get from environment variable first
-    const envApiUrl = process.env.NEXT_PUBLIC_API_URL;
-    if (envApiUrl) {
-      setApiBaseUrl(envApiUrl);
-    } else {
-      // Fallback to default with dynamic port detection
-      const defaultPort = 5000;
-      const baseUrl = `http://localhost:${defaultPort}`;
-      
-      // Test the connection
-      fetch(`${baseUrl}/api/health-check`)
-        .then(response => {
-          if (response.ok) {
-            setApiBaseUrl(baseUrl);
-          } else {
-            console.warn("Default API port not responding, will attempt connection at runtime");
-          }
-        })
-        .catch(error => {
-          console.warn("Could not connect to default API port, will attempt connection at runtime");
-        });
-    }
-  }, []);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: "" }));
-  };
-
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
-    if (!formData.Name) newErrors.Name = "Name is required.";
+    if (!formData.name) newErrors.name = "Name is required.";
     if (!formData.email) {
       newErrors.email = "Email is required.";
     } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
@@ -67,8 +54,22 @@ const SignInPage = () => {
     return newErrors;
   };
 
+  // Handle input change
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    // Clear error when user types
+    if (errors[name as keyof ErrorState]) {
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
+  };
+
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Validate form
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -80,16 +81,16 @@ const SignInPage = () => {
 
     // Transform the data to match backend schema
     const transformedData = {
-      name: formData.Name,
+      name: formData.name,
       email: formData.email,
       company: formData.companyName,
       title: formData.jobTitle,
-      mobile: formData.mobileNumber
+      mobile: formData.mobileNumber,
     };
 
     try {
       // Try different ports if the default one fails
-      const ports = [5000, 5001, 5002, 5003,5004,5005,5006,5007,5008,5009,5010,5011,5012]; // Add more potential ports if needed
+      const ports = [5000, 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009, 5010, 5011, 5012]; // Add more potential ports if needed
       let response = null;
       let connectionError = null;
 
@@ -103,7 +104,7 @@ const SignInPage = () => {
             },
             body: JSON.stringify(transformedData),
           });
-          
+
           if (response.ok) {
             setApiBaseUrl(`http://localhost:${port}`);
             break;
@@ -119,7 +120,7 @@ const SignInPage = () => {
         setSubmitMessage(data.message || "Successfully registered!");
         // Clear form on success
         setFormData({
-          Name: "",
+          name: "",
           jobTitle: "",
           email: "",
           companyName: "",
@@ -140,7 +141,7 @@ const SignInPage = () => {
     }
   };
 
-  // Rest of your JSX remains the same until the form section
+  // JSX for the form
   return (
     <div className="flex flex-col sm:flex-row min-h-screen bg-[#ffd4d4]">
       {/* Left Side: Descriptive Text */}
@@ -175,12 +176,12 @@ const SignInPage = () => {
             Sign Up Form
           </h2>
 
-          {[
-            { id: "Name", label: "Name", placeholder: "Enter your name" },
+          {[ 
+            { id: "name", label: "Name", placeholder: "Enter your name" },
             { id: "email", label: "Email Address", placeholder: "Enter your email address" },
             { id: "companyName", label: "Company Name", placeholder: "Enter your company name" },
             { id: "jobTitle", label: "Job Title", placeholder: "Enter your job title" },
-            { id: "mobileNumber", label: "Mobile Number", placeholder: "Enter your mobile number" },
+            { id: "mobileNumber", label: "Mobile Number", placeholder: "Enter your mobile number" }
           ].map((field) => (
             <div className="mb-4" key={field.id}>
               <label
@@ -193,13 +194,11 @@ const SignInPage = () => {
                 type={field.id === "email" ? "email" : field.id === "mobileNumber" ? "tel" : "text"}
                 id={field.id}
                 name={field.id}
-                value={formData[field.id as keyof typeof formData]}
+                value={formData[field.id as keyof FormData]}
                 onChange={handleChange}
                 required
                 className={`mt-1 block w-full p-3 border ${
-                  errors[field.id]
-                    ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-                    : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                  errors[field.id] ? "border-red-500 focus:border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                 } rounded-md`}
                 placeholder={field.placeholder}
               />

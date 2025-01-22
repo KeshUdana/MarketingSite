@@ -28,18 +28,8 @@ const LoginPage = () => {
     if (envApiUrl) {
       setApiBaseUrl(envApiUrl);
     } else {
-      const defaultPort = 5000;
-      const baseUrl = `http://localhost:${defaultPort}`;
-      
-      fetch(`${baseUrl}/api/health-check`)
-        .then(response => {
-          if (response.ok) {
-            setApiBaseUrl(baseUrl);
-          }
-        })
-        .catch(error => {
-          console.warn("Default API port not responding, will attempt connection at runtime");
-        });
+      // Default to the backend URL (you can update this URL if necessary)
+      setApiBaseUrl("http://localhost:5000"); // Update this if needed
     }
   }, []);
 
@@ -51,7 +41,7 @@ const LoginPage = () => {
     }
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
-    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+    } else if (!/^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/.test(formData.email)) {
       newErrors.email = "Invalid email format";
     }
     return newErrors;
@@ -60,16 +50,16 @@ const LoginPage = () => {
   // Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
     // Clear error when user types
     if (errors[name as keyof ErrorState]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     // Validate form
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length > 0) {
@@ -80,42 +70,22 @@ const LoginPage = () => {
     setIsLoading(true);
     setErrors({});
 
+    const apiBaseUrl="http://localhost:5000";
     try {
-      // Try different ports if the first one fails
-      const ports = [5000, 5001, 5002, 5003,5004,5005,5006,5007,5008,5009,5010,5011,5012];
-      let response = null;
-      let connectionError = null;
+      const url = `${apiBaseUrl}/api/submit-waitlist`; // API for waitlist submission
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-      for (const port of ports) {
-        try {
-          const url = `http://localhost:${port}/api/submit-waitlist`;
-          response = await fetch(url, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-          });
-          
-          if (response.ok) {
-            setApiBaseUrl(`http://localhost:${port}`);
-            break;
-          }
-        } catch (error) {
-          connectionError = error;
-          continue;
-        }
-      }
-
-      if (response && response.ok) {
+      if (response.ok) {
         const result = await response.json();
         console.log("Backend Response:", result);
         setSubmitted(true);
-        // Clear form on success
         setFormData({ name: "", email: "" });
-      } else if (!response) {
-        setErrors({ submit: "Could not connect to the server. Please check if the server is running." });
-        console.error("Connection error:", connectionError);
       } else {
         const errorData = await response.json();
         setErrors({ submit: errorData.message || "Failed to submit to the waitlist." });
@@ -139,15 +109,14 @@ const LoginPage = () => {
             src="/images/user.jpg"
             width={800}
             height={300}
+            onError={(e) => console.warn("Image load error:", e)}
           />
         </div>
 
         {/* Form Section */}
         <div className="p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-semibold text-gray-800">
-              Join the Waitlist
-            </h1>
+            <h1 className="text-3xl font-semibold text-gray-800">Join the Waitlist</h1>
             <p className="text-lg text-gray-600 mt-2">
               Enter your details below and be the first to know when we launch.
             </p>
@@ -156,10 +125,7 @@ const LoginPage = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name Input */}
             <div className="space-y-2">
-              <label
-                htmlFor="name"
-                className="block text-lg font-medium text-gray-700"
-              >
+              <label htmlFor="name" className="block text-lg font-medium text-gray-700">
                 Name
               </label>
               <input
@@ -169,22 +135,17 @@ const LoginPage = () => {
                 value={formData.name}
                 onChange={handleChange}
                 className={`w-full p-3 border ${
-                  errors.name ? 'border-red-500' : 'border-gray-300'
+                  errors.name ? "border-red-500" : "border-gray-300"
                 } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 placeholder="Your full name"
                 required
               />
-              {errors.name && (
-                <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-              )}
+              {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
             </div>
 
             {/* Email Input */}
             <div className="space-y-2">
-              <label
-                htmlFor="email"
-                className="block text-lg font-medium text-gray-700"
-              >
+              <label htmlFor="email" className="block text-lg font-medium text-gray-700">
                 Email Address
               </label>
               <input
@@ -194,14 +155,12 @@ const LoginPage = () => {
                 value={formData.email}
                 onChange={handleChange}
                 className={`w-full p-3 border ${
-                  errors.email ? 'border-red-500' : 'border-gray-300'
+                  errors.email ? "border-red-500" : "border-gray-300"
                 } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 placeholder="Your email address"
                 required
               />
-              {errors.email && (
-                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-              )}
+              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
             </div>
 
             {/* Submit Button */}
@@ -215,9 +174,7 @@ const LoginPage = () => {
 
             {/* Error Message */}
             {errors.submit && (
-              <p className="mt-4 text-red-500 text-center text-lg">
-                {errors.submit}
-              </p>
+              <p className="mt-4 text-red-500 text-center text-lg">{errors.submit}</p>
             )}
 
             {/* Success Message */}
