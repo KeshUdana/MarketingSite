@@ -1,5 +1,4 @@
 "use client";
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -32,22 +31,22 @@ export default function Header() {
 
   return (
     <header className="fixed w-full top-0 left-0 bg-white/20 backdrop-blur-lg py-4 z-50">
-      {/* Centered Logo */}
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
-        <Link href="/">
-          <Image
-            src="/images/Component 1.png"
-            alt="Modde Logo"
-            width={120}
-            height={40}
-            className="object-contain"
-          />
+    {/* Left-Aligned Logo */}
+    <div className="absolute top-0 -mt-2 left-5">
+      <Link href="/">
+        <Image
+          src="/images/Component 1.png"
+          alt="Modde Logo"
+          width={100}
+          height={50}
+          className="object-contain"
+        />
         </Link>
       </div>
 
       {/* Navigation Bar */}
-      <nav className="flex justify-between items-center px-8">
-        {/* Left Navigation Links */}
+      <nav className="flex justify-end items-center px-8">
+        {/* Right-Aligned Navigation Links */}
         <div className="flex space-x-8 text-sm font-semibold text-gray-800">
           <button
             onClick={() => handleNavigation('Hero')}

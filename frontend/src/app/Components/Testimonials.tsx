@@ -1,56 +1,100 @@
-import Image from 'next/image'
+"use client";
+
+import { useEffect, useRef } from "react";
+import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const teamMembers = [
   {
     name: "Keshawa",
     title: "Leader",
     description: "I lead my team and also train & deploy ML models",
-    image: "/images/Keshawa.jpeg"
+    image: "/images/Keshawa.jpeg",
   },
   {
     name: "Kalindu",
     title: "Server-side Development & marketing",
     description: "I work to build the backend of Modde",
-    image: "/images/Kalindu.jpg"
+    image: "/images/Kalindu.jpg",
   },
   {
     name: "Tharaki",
     title: "UI/UX Design & Marketing",
     description: "I design & lay the foundations for the client side",
-    image: "/images/Tharaki.jpg"
+    image: "/images/Tharaki.jpg",
   },
   {
     name: "Sandara",
     title: "Client-side development",
     description: "I bring the design to life",
-    image: "/images/Sandara.jpg"
+    image: "/images/Sandara.jpg",
   },
   {
     name: "Ransika",
     title: "Server-side development",
     description: "I'm in charge of databases to aid the server side",
-    image: "/images/Ransika.jpg"
+    image: "/images/Ransika.jpg",
   },
   {
     name: "Nelith",
     title: "Client Side development",
     description: "I help make the client side come to life",
-    image: "/images/Nelith.jpg"
-  }
+    image: "/images/nelith.png",
+  },
 ];
 
-export default function Testemonials() {
+export default function Testimonials() {
+  const sectionRef = useRef(null);
+  const cardRefs = useRef([]);
+
+  useEffect(() => {
+    const sectionElement = sectionRef.current;
+    const cards = cardRefs.current;
+
+    if (sectionElement && cards.every((card) => card !== null)) {
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: sectionElement,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gray-100 py-10">
+    <section
+      ref={sectionRef}
+      className="min-h-screen flex items-center justify-center bg-gray-100 py-10"
+    >
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-4xl font-bold text-gray-900 mb-6">Meet the Team</h2>
-        <p className="text-lg text-gray-700 mb-10">Get to know the talented individuals who make Modde what it is.</p>
+        <p className="text-lg text-gray-700 mb-10">
+          Get to know the talented individuals who make Modde what it is.
+        </p>
 
         {/* Responsive Grid Layout */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
             <div
               key={index}
+              ref={(el) => (cardRefs.current[index] = el)}
               className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
             >
               <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-6">
