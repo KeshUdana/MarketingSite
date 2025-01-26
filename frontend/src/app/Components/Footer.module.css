@@ -1,0 +1,33 @@
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 4rem 0;
+    position: relative;
+    border-radius: 0 158px 0 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.emailInput {
+    border: 1px solid #fff;
+    background: transparent;
+    padding: 1rem;
+    width: 100%;
+    max-width: 263px;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.sendButton {
+    background-color: #fff;
+    color: #000;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-left: 1rem;
+}

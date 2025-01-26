@@ -1,0 +1,96 @@
+.landingPage {
+    width: 100%;
+    position: relative;
+    background-color: #fff;
+    min-height: 100vh;
+    overflow: hidden;
+}
+.object-contain{
+    left: 20rem;
+    padding: auto;
+}
+
+.AboutSection{
+    padding: 4rem 0;
+    position: relative;
+
+}
+.AboutContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+.AboutTitle {
+    font-size: 82px;
+    font-weight: 900;
+    color: #333;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+}
+.AboutDescription {
+    font-size: 18px;
+    color: #777;
+    margin-bottom: 2rem;
+    max-width: 515px;
+}
+.relative{
+    padding-bottom: 30rem;
+}
+
+.heroSection {
+    padding: 4rem 0;
+    position: relative;
+}
+
+.heroContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.heroTitle {
+    font-size: 82px;
+    font-weight: 900;
+    color: #333;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+}
+
+.heroDescription {
+    font-size: 18px;
+    color: #777;
+    margin-bottom: 2rem;
+    max-width: 515px;
+}
+.HeroImage{
+    padding-left: 200px;
+}
+
+.ctaButton {
+    background-color: #fcbebe;
+    color: #4a4a4a;
+    font-weight: 900;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+    background-color: #333;
+    color: white;
+}
+
+.heroImage {
+    position: absolute;
+    /* Make the image absolute for positioning */
+    top: 2rem;
+    /* Adjust top spacing */
+    right: 2rem;
+    /* Adjust right spacing */
+    max-width: 300px;
+    /* Adjust size as needed */
+    z-index: 1;
+    /* Ensure it doesn't overlap social icons */
+    object-fit: contain;
+}

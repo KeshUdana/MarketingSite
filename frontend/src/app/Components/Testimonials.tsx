@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
@@ -47,8 +45,8 @@ const teamMembers = [
 ];
 
 export default function Testimonials() {
-  const sectionRef = useRef(null);
-  const cardRefs = useRef([]);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const sectionElement = sectionRef.current;
@@ -95,9 +93,7 @@ export default function Testimonials() {
             <div
               key={index}
               ref={(el) => {
-                if (el) {
-                  cardRefs.current[index] = el;
-                }
+                cardRefs.current[index] = el;
               }}
               className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
             >
