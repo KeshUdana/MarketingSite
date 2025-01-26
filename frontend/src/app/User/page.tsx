@@ -25,12 +25,7 @@ const LoginPage = () => {
   // Initialize API base URL
   useEffect(() => {
     const envApiUrl = process.env.NEXT_PUBLIC_API_URL;
-    if (envApiUrl) {
-      setApiBaseUrl(envApiUrl);
-    } else {
-      // Default to the backend URL (you can update this URL if necessary)
-      setApiBaseUrl("http://localhost:5000"); // Update this if needed
-    }
+    setApiBaseUrl(envApiUrl || "http://localhost:5000"); // Default to local if no environment variable
   }, []);
 
   // Validation function
@@ -51,7 +46,6 @@ const LoginPage = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error when user types
     if (errors[name as keyof ErrorState]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -60,7 +54,6 @@ const LoginPage = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Validate form
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -70,14 +63,10 @@ const LoginPage = () => {
     setIsLoading(true);
     setErrors({});
 
-    const apiBaseUrl="http://localhost:5000";
     try {
-      const url = `${apiBaseUrl}/api/submit-waitlist`; // API for waitlist submission
-      const response = await fetch(url, {
+      const response = await fetch(`${apiBaseUrl}/api/submit-waitlist`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
@@ -180,7 +169,7 @@ const LoginPage = () => {
             {/* Success Message */}
             {submitted && !errors.submit && (
               <p className="mt-4 text-green-600 text-center text-lg">
-                Thank you for joining! We'll keep you updated.
+                Thank you for joining! We&apos;ll keep you updated.
               </p>
             )}
           </form>
