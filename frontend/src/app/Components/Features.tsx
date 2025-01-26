@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import styles from "../Pages/LandingPage.module.css";
+import styles from "./LandingPage.module.css";
 import { setupAnimations } from "./FeatureAnimation";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";

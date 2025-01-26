@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import styles from "../Pages/LandingPage.module.css"
+import styles from "./LandingPage.module.css"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 gsap.registerPlugin(ScrollTrigger)
