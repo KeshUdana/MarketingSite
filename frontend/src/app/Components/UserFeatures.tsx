@@ -47,7 +47,6 @@ export default function UserFeatures() {
     const buttonElement = buttonRef.current
 
     if (sectionElement && featureElements.every((el) => el !== null)) {
-      // Section Fade-In Animation
       gsap.from(sectionElement, {
         opacity: 0,
         scale: 0.9,
@@ -60,7 +59,6 @@ export default function UserFeatures() {
         },
       })
 
-      // Feature cards animation with rotation and floating effect
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionElement,
@@ -74,33 +72,31 @@ export default function UserFeatures() {
         y: 100,
         opacity: 0,
         rotateX: -20,
-        scale: 1, // Increase initial scale to make the cards larger
+        scale: 1,
         duration: 1,
         stagger: 0.2,
         ease: "power3.out",
       })
 
-      // Floating effect for feature cards
       featureElements.forEach((featureEl) => {
         gsap.to(featureEl, {
-          y: "random(-10, 10)", // Slight vertical movement to simulate floating
-          repeat: -1, // Loop infinitely
-          yoyo: true, // Reverse the direction
-          duration: 2, // Time for each cycle
-          ease: "sine.inOut", // Smooth easing for floating effect
+          y: "random(-10, 10)",
+          repeat: -1,
+          yoyo: true,
+          duration: 2,
+          ease: "sine.inOut",
         })
       })
     }
 
     if (buttonElement) {
-      // Button pulse effect with color transition
       gsap.to(buttonElement, {
         scale: 1.1,
         duration: 0.8,
         repeat: -1,
         yoyo: true,
         ease: "power3.inOut",
-        backgroundColor: "#ff6347", // Color change on pulse
+        backgroundColor: "#ff6347",
       })
     }
   }, [])
@@ -112,35 +108,41 @@ export default function UserFeatures() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 pb-16 -mt-10 bg-[#ffd4d4] rounded-tl-[400px] relative min-h-screen flex flex-col"
+      className="py-16 pb-12 bg-[#ffd4d4] rounded-tl-[400px] relative min-h-screen flex flex-col"
     >
-      <div className="max-w-10xl mx-auto px-6 md:px-12 h-full flex flex-col justify-between">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-[#333] mb-4">Snap, Style, and Slay</h2>
-          <p className="text-2xl text-[#666]">Effortless Style with Just One Snap</p>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-col justify-between">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#333] mb-4">Snap, Style, and Slay</h2>
+          <p className="text-lg sm:text-2xl text-[#666]">Effortless Style with Just One Snap</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 flex-grow">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {features.map((feature, index) => (
             <div
               key={index}
-              ref={(el) => (featuresRef.current[index] = el)}
-              className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-transform duration-300 hover:scale-105 transform" // Increase padding and make the card larger
+              ref={(el) => {
+                if (el) {
+                  featuresRef.current[index] = el;
+                }
+              }}
+              className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-transform duration-300 hover:scale-105"
             >
               <div
-                className={`${feature.bgColor} rounded-full w-20 h-20 mb-6 flex items-center justify-center mx-auto`} // Increased size of the icon container
+                className={`${feature.bgColor} rounded-full w-16 h-16 sm:w-20 sm:h-20 mb-6 flex items-center justify-center mx-auto`}
               >
-                <Image src={feature.icon || "/placeholder.svg"} alt={feature.title} width={48} height={48} /> {/* Increased icon size */}
+                <Image src={feature.icon || "/placeholder.svg"} alt={feature.title} width={40} height={40} />
               </div>
-              <h3 className="text-xl font-bold mb-2 text-[#333] text-center">{feature.title}</h3> {/* Increased text size */}
-              <p className="text-[#666] text-sm leading-relaxed text-center">{feature.description}</p>
+              <h3 className="text-lg sm:text-xl font-semibold mb-2 text-[#333] text-center">{feature.title}</h3>
+              <p className="text-sm sm:text-base text-[#666] leading-relaxed text-center">
+                {feature.description}
+              </p>
             </div>
           ))}
         </div>
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-full md:w-auto">
+        <div className="mt-8 flex justify-center">
           <button
             ref={buttonRef}
-            className={`${styles.ctaButton} shadow-lg`}
+            className={`${styles.ctaButton} px-8 py-3 text-white font-bold rounded-full shadow-md hover:shadow-lg`}
             onClick={handleRequest}
           >
             Join the Waitlist!

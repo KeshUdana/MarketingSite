@@ -2,35 +2,38 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import userRoutes from "./routes/user.js";  // Import routes from user.js
-import retRoutes from "./routes/retailers.js"; 
+import userRoutes from "./routes/user.js"; // Import routes from user.js
+import retRoutes from "./routes/retailers.js"; // Import routes from retailers.js
+
 dotenv.config();
 
 const app = express();
-let PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,       // Use the new URL string parser
-  useUnifiedTopology: true,   // Use the new server discovery and monitoring engine
-  serverSelectionTimeoutMS: 30000, // Wait up to 30 seconds for MongoDB to respond
-  socketTimeoutMS: 45000,     // Wait up to 45 seconds for socket inactivity
-})
+mongoose
+  .connect(process.env.MONGO_URI, {
+    serverSelectionTimeoutMS: 30000, // Wait up to 30 seconds for MongoDB to respond
+    socketTimeoutMS: 45000, // Wait up to 45 seconds for socket inactivity
+  })
   .then(() => console.log("Connected to MongoDB"))
-  .catch((error) => console.error("MongoDB connection error:", error));
+  .catch((error) => {
+    console.error("MongoDB connection error:", error.message);
+    process.exit(1); // Exit if unable to connect to the database
+  });
 
 // Mount routes on '/api'
-app.use("/api", userRoutes);  
-console.log("Server.js,mounted the user api path")
-
+app.use("/api", userRoutes);
+console.log("Server.js, mounted the user API path");
 
 app.use("/api/retailers", retRoutes);
-console.log("Server.js,mounted the retailer api path")
+console.log("Server.js, mounted the retailer API path");
 
+// Start the server with dynamic port handling
 const startServer = (port) => {
   const server = app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);

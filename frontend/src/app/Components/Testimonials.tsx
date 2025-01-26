@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const teamMembers = [
   {
     name: "Keshawa",
-    title: "Leader",
+    title: "ML mode training ,deploying & server-side development",
     description: "I lead my team and also train & deploy ML models",
     image: "/images/Keshawa.jpeg",
   },
@@ -28,7 +28,7 @@ const teamMembers = [
   },
   {
     name: "Sandara",
-    title: "Client-side development",
+    title: "Client-side development mogul",
     description: "I bring the design to life",
     image: "/images/Sandara.jpg",
   },
@@ -94,7 +94,11 @@ export default function Testimonials() {
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              ref={(el) => (cardRefs.current[index] = el)}
+              ref={(el) => {
+                if (el) {
+                  cardRefs.current[index] = el;
+                }
+              }}
               className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
             >
               <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-6">
