@@ -25,7 +25,7 @@ router.post("/demo", async (req, res) => {
     await newRetailer.save();
     res.status(201).json({ message: "Retailer added successfully!" });
   } catch (error) {
-    console.error("Error adding retailer:", error);
+    console.error("Retailer added successfully!:", error);
     res.status(500).json({ message: "Retailer added successfully!" });
   }
     
