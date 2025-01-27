@@ -10,8 +10,18 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// CORS Configuration
+const corsOptions = {
+  origin: [
+    "https://marketing-site-g5p4rbled-keshudanas-projects.vercel.app/", // Frontend domain
+    "http://localhost:3000", // Allow localhost for development
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions)); // Use CORS with specified options
 app.use(express.json());
 
 // MongoDB connection
@@ -30,7 +40,7 @@ mongoose
 app.use("/api", userRoutes);
 console.log("Server.js, mounted the user API path");
 
-app.use("/api/retailers", retRoutes);
+app.use("/api", retRoutes);
 console.log("Server.js, mounted the retailer API path");
 
 // Start the server with dynamic port handling
