@@ -24,7 +24,8 @@ const LoginPage = () => {
 
   // Initialize API base URL
   useEffect(() => {
-    const envApiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const envApiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+    console.log("API Base URL:", envApiUrl);
     setApiBaseUrl(envApiUrl || "http://localhost:5000"); // Default to local if no environment variable
   }, []);
 
