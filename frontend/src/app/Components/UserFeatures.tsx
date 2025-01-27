@@ -96,7 +96,7 @@ export default function UserFeatures() {
         repeat: -1,
         yoyo: true,
         ease: "power3.inOut",
-        backgroundColor: "#ff6347",
+        backgroundColor: "#ffffff",
       })
     }
   }, [])
@@ -139,7 +139,7 @@ export default function UserFeatures() {
             </div>
           ))}
         </div>
-        <div className="mt-8 flex justify-center">
+        <div className="mt-8 flex justify-center pt-20 pb-5">
           <button
             ref={buttonRef}
             className={`${styles.ctaButton} px-8 py-3 text-white font-bold rounded-full shadow-md hover:shadow-lg`}
