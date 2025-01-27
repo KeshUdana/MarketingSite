@@ -21,12 +21,7 @@ interface ErrorState {
   submit?: string;
   [key: string]: string | undefined; 
 }
- // Initialize API base URL
-  useEffect(() => {
-    const envApiUrl = process.env.NEXT_PUBLIC_API_URL;
-    setApiBaseUrl(envApiUrl || "http://localhost:5000"); // Default to local if no environment variable
-  }, []);
-
+ 
 const SignInPage = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -40,6 +35,12 @@ const SignInPage = () => {
   const [errors, setErrors] = useState<ErrorState>({});
   const [submitMessage, setSubmitMessage] = useState("");
   const [apiBaseUrl, setApiBaseUrl] = useState("");
+
+  // Initialize API base URL
+  useEffect(() => {
+    const envApiUrl = process.env.NEXT_PUBLIC_API_URL;
+    setApiBaseUrl(envApiUrl || "http://localhost:5000"); // Default to local if no environment variable
+  }, []);
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -135,7 +136,7 @@ const SignInPage = () => {
         <p className="text-base sm:text-lg text-gray-600 mb-4">
           Sign up to sell on Modde. We are looking for Sri Lankan brands and
           sellers who share our passion for delivering quality products and
-          exceptional customer experiences. If that sounds like you, we'd love
+          exceptional customer experiences. If that sounds like you, we would love
           for you to apply!
         </p>
         <div className="flex justify-center sm:justify-start">
