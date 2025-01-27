@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState,useEffect} from "react";
 
 // Define types
 interface FormData {
@@ -19,8 +19,13 @@ interface ErrorState {
   companyName?: string;
   mobileNumber?: string;
   submit?: string;
-  [key: string]: string | undefined; // Index signature added here
+  [key: string]: string | undefined; 
 }
+ // Initialize API base URL
+  useEffect(() => {
+    const envApiUrl = process.env.NEXT_PUBLIC_API_URL;
+    setApiBaseUrl(envApiUrl || "http://localhost:5000"); // Default to local if no environment variable
+  }, []);
 
 const SignInPage = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -30,9 +35,11 @@ const SignInPage = () => {
     companyName: "",
     mobileNumber: "",
   });
+  const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<ErrorState>({});
   const [submitMessage, setSubmitMessage] = useState("");
+  const [apiBaseUrl, setApiBaseUrl] = useState("");
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -52,17 +59,22 @@ const SignInPage = () => {
     return newErrors;
   };
 
+  // Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
+    // Clear error when user types
     if (errors[name as keyof ErrorState]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
   };
 
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Validate form
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -72,6 +84,7 @@ const SignInPage = () => {
     setIsLoading(true);
     setSubmitMessage("");
 
+    // Transform the data to match backend schema
     const transformedData = {
       name: formData.name,
       email: formData.email,
@@ -79,65 +92,17 @@ const SignInPage = () => {
       title: formData.jobTitle,
       mobile: formData.mobileNumber,
     };
+  try {
+    const response = await fetch(`${apiBaseUrl}/api/retailers/demo`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
 
-    try {
-      const ports = [5000, 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009, 5010, 5011, 5012];
-      let response = null;
-      let connectionError = null;
-    
-      // Use the Render site link in production, fallback to localhost in development
-      const baseURL =
-        process.env.NODE_ENV === "production"
-          ? "https://marketingsitebackend.onrender.com/api/retailers/demo"
-          : null;
-    
-      if (baseURL) {
-        // Use Render site URL in production
-        try {
-          response = await fetch(baseURL, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(transformedData),
-          });
-    
-          if (!response.ok) {
-            throw new Error("Failed to connect to the production server.");
-          }
-        } catch (error) {
-          console.error("Production server error:", error);
-          connectionError = error;
-        }
-      }
-    
-      // If no response from production, try local ports in development
-      if (!response || !response.ok) {
-        for (const port of ports) {
-          try {
-            const url = `http://localhost:${port}/api/retailers/demo`;
-            response = await fetch(url, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(transformedData),
-            });
-    
-            if (response.ok) {
-              break;
-            }
-          } catch (error) {
-            connectionError = error;
-            continue;
-          }
-        }
-      }
-    
-      // Handle the response or errors
       if (response && response.ok) {
         const data = await response.json();
         setSubmitMessage(data.message || "Successfully registered!");
+        // Clear form on success
         setFormData({
           name: "",
           jobTitle: "",
@@ -147,7 +112,6 @@ const SignInPage = () => {
         });
       } else if (!response) {
         setSubmitMessage("Could not connect to the server. Please check if the server is running.");
-        console.error("Connection error:", connectionError);
       } else {
         const errorData = await response.json();
         setSubmitMessage(errorData.message || "Registration failed. Please try again.");
@@ -158,15 +122,21 @@ const SignInPage = () => {
     } finally {
       setIsLoading(false);
     }
-    
+  };
+
+  // JSX for the form
   return (
     <div className="flex flex-col sm:flex-row min-h-screen bg-[#ffd4d4]">
+      {/* Left Side: Descriptive Text */}
       <div className="flex flex-col justify-center w-full sm:w-1/2 px-4 sm:px-12 py-8 bg-white shadow-lg">
         <h1 className="text-2xl sm:text-4xl font-bold mb-6 text-gray-800">
           Get started with Modde!
         </h1>
         <p className="text-base sm:text-lg text-gray-600 mb-4">
-          Sign up to sell on Modde. We are looking for Sri Lankan brands and sellers who share our passion for delivering quality products and exceptional customer experiences. If that sounds like you, we&apos;d love for you to apply!
+          Sign up to sell on Modde. We are looking for Sri Lankan brands and
+          sellers who share our passion for delivering quality products and
+          exceptional customer experiences. If that sounds like you, we'd love
+          for you to apply!
         </p>
         <div className="flex justify-center sm:justify-start">
           <Image
@@ -179,21 +149,28 @@ const SignInPage = () => {
         </div>
       </div>
 
+      {/* Right Side: Modern Form */}
       <div className="flex justify-center items-center w-full sm:w-1/2 px-4 sm:px-12 py-8 bg-[#ffd4d4]">
-        <form className="w-full max-w-lg bg-white p-6 sm:p-8 rounded-lg shadow-md" onSubmit={handleSubmit}>
+        <form
+          className="w-full max-w-lg bg-white p-6 sm:p-8 rounded-lg shadow-md"
+          onSubmit={handleSubmit}
+        >
           <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-6">
             Sign Up Form
           </h2>
 
-          {[
+          {[ 
             { id: "name", label: "Name", placeholder: "Enter your name" },
             { id: "email", label: "Email Address", placeholder: "Enter your email address" },
             { id: "companyName", label: "Company Name", placeholder: "Enter your company name" },
             { id: "jobTitle", label: "Job Title", placeholder: "Enter your job title" },
-            { id: "mobileNumber", label: "Mobile Number", placeholder: "Enter your mobile number" },
+            { id: "mobileNumber", label: "Mobile Number", placeholder: "Enter your mobile number" }
           ].map((field) => (
             <div className="mb-4" key={field.id}>
-              <label htmlFor={field.id} className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor={field.id}
+                className="block text-sm font-medium text-gray-700"
+              >
                 {field.label} *
               </label>
               <input
@@ -208,10 +185,13 @@ const SignInPage = () => {
                 } rounded-md`}
                 placeholder={field.placeholder}
               />
-              {errors[field.id] && <p className="text-red-500 text-sm mt-1">{errors[field.id]}</p>}
+              {errors[field.id] && (
+                <p className="text-red-500 text-sm mt-1">{errors[field.id]}</p>
+              )}
             </div>
           ))}
 
+          {/* Submit Button */}
           <button
             type="submit"
             className="w-full py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -220,6 +200,7 @@ const SignInPage = () => {
             {isLoading ? "Submitting..." : "Submit"}
           </button>
 
+          {/* Success/Failure Message */}
           {submitMessage && (
             <div className="mt-4 text-center text-sm">
               <p className={`text-lg ${submitMessage.includes("error") || submitMessage.includes("failed") || submitMessage.includes("Could not") ? "text-red-500" : "text-green-500"}`}>
@@ -231,6 +212,10 @@ const SignInPage = () => {
       </div>
     </div>
   );
-};}
+};
 
 export default SignInPage;
+function setApiBaseUrl(arg0: string) {
+  throw new Error("Function not implemented.");
+}
+
