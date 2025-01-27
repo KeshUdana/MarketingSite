@@ -84,27 +84,57 @@ const SignInPage = () => {
       const ports = [5000, 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009, 5010, 5011, 5012];
       let response = null;
       let connectionError = null;
-
-      for (const port of ports) {
+    
+      // Use the Render site link in production, fallback to localhost in development
+      const baseURL =
+        process.env.NODE_ENV === "production"
+          ? "https://marketingsitebackend.onrender.com/api/retailers/demo"
+          : null;
+    
+      if (baseURL) {
+        // Use Render site URL in production
         try {
-          const url = `http://localhost:${port}/api/retailers/demo`;
-          response = await fetch(url, {
+          response = await fetch(baseURL, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(transformedData),
           });
-
-          if (response.ok) {
-            break;
+    
+          if (!response.ok) {
+            throw new Error("Failed to connect to the production server.");
           }
         } catch (error) {
+          console.error("Production server error:", error);
           connectionError = error;
-          continue;
         }
       }
-
+    
+      // If no response from production, try local ports in development
+      if (!response || !response.ok) {
+        for (const port of ports) {
+          try {
+            const url = `http://localhost:${port}/api/retailers/demo`;
+            response = await fetch(url, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(transformedData),
+            });
+    
+            if (response.ok) {
+              break;
+            }
+          } catch (error) {
+            connectionError = error;
+            continue;
+          }
+        }
+      }
+    
+      // Handle the response or errors
       if (response && response.ok) {
         const data = await response.json();
         setSubmitMessage(data.message || "Successfully registered!");
@@ -128,8 +158,7 @@ const SignInPage = () => {
     } finally {
       setIsLoading(false);
     }
-  };
-
+    
   return (
     <div className="flex flex-col sm:flex-row min-h-screen bg-[#ffd4d4]">
       <div className="flex flex-col justify-center w-full sm:w-1/2 px-4 sm:px-12 py-8 bg-white shadow-lg">
@@ -202,6 +231,6 @@ const SignInPage = () => {
       </div>
     </div>
   );
-};
+};}
 
 export default SignInPage;
