@@ -13,11 +13,12 @@ const PORT = process.env.PORT || 5000;
 // CORS Configuration
 const corsOptions = {
   origin: [
-    "https://marketing-site-g5p4rbled-keshudanas-projects.vercel.app/", // Frontend domain
+    "https://marketing-site-g5p4rbled-keshudanas-projects.vercel.app", // Frontend domain without trailing slash
     "http://localhost:3000", // Allow localhost for development
   ],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Explicitly allow OPTIONS
+  allowedHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
+  credentials: true, // Allow cookies if needed
 };
 
 // Middleware
@@ -36,6 +37,9 @@ mongoose
     process.exit(1); // Exit if unable to connect to the database
   });
 
+// Preflight request handler for CORS
+app.options("*", cors(corsOptions)); // Handle preflight requests for all routes
+
 // Mount routes on '/api'
 app.use("/api", userRoutes);
 console.log("Server.js, mounted the user API path");
@@ -43,20 +47,7 @@ console.log("Server.js, mounted the user API path");
 app.use("/api", retRoutes);
 console.log("Server.js, mounted the retailer API path");
 
-// Start the server with dynamic port handling
-const startServer = (port) => {
-  const server = app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-  });
-
-  server.on("error", (err) => {
-    if (err.code === "EADDRINUSE") {
-      console.log(`Port ${port} is in use. Trying port ${port + 1}...`);
-      startServer(port + 1);
-    } else {
-      console.error("Server error:", err);
-    }
-  });
-};
-
-startServer(PORT);
+// Start the server with dynamic port handling (simplified for Render)
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
