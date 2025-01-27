@@ -12,18 +12,18 @@ const PORT = process.env.PORT || 5000;
 
 // CORS Configuration
 const corsOptions = {
-  origin: [
-    "https://marketing-site-g5p4rbled-keshudanas-projects.vercel.app", // Frontend domain without trailing slash
-    "http://localhost:3000", // Allow localhost for development
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Explicitly allow OPTIONS
-  allowedHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
-  credentials: true, // Allow cookies if needed
+  origin: "*", // Allow all origins
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true, // Allow credentials if cookies/auth are used
 };
 
 // Middleware
-app.use(cors(corsOptions)); // Use CORS with specified options
+app.use(cors(corsOptions)); // Apply CORS globally
 app.use(express.json());
+
+// Preflight request handler
+app.options("*", cors(corsOptions)); // Handle preflight requests
 
 // MongoDB connection
 mongoose
