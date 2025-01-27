@@ -145,7 +145,7 @@ export default function Features() {
             </div>
           ))}
         </div>
-        <div className="flex justify-center mt-10">
+        <div className="flex justify-center mt-10 pt-10 pb-2">
           <button
             className={`${styles.ctaButton} shadow-lg`}
             onClick={handleRequest}

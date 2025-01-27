@@ -8,40 +8,40 @@ gsap.registerPlugin(ScrollTrigger);
 
 const teamMembers = [
   {
-    name: "Keshawa",
+    name: "Keshawa Udana",
     title: "ML mode training ,deploying & server-side development",
     description: "I lead my team and also train & deploy ML models",
     image: "/images/Keshawa.jpeg",
   },
   {
-    name: "Kalindu",
+    name: "Kalindu Wijesinghe",
     title: "Server-side Development & marketing",
     description: "I work to build the backend of Modde",
     image: "/images/Kalindu.jpg",
   },
   {
-    name: "Tharaki",
+    name: "Tharaki Dimithri",
     title: "UI/UX Design & Marketing",
     description: "I design & lay the foundations for the client side",
     image: "/images/Tharaki.jpg",
   },
   {
-    name: "Sandara",
+    name: "Sandara Hettiarachchi",
     title: "Client-side development mogul",
     description: "I bring the design to life",
-    image: "/images/Sandara.jpg",
+    image: "/images/sandara.jpeg",
   },
   {
-    name: "Ransika",
+    name: "Ransika Ranaweera",
     title: "Server-side development",
     description: "I'm in charge of databases to aid the server side",
-    image: "/images/Ransika.jpg",
+    image: "/images/ransika.jpeg",
   },
   {
-    name: "Nelith",
+    name: "Nelith Nethsanda",
     title: "Client Side development",
     description: "I help make the client side come to life",
-    image: "/images/nelith.png",
+    image: "/images/nelith.jpeg",
   },
 ];
 
