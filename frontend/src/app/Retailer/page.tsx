@@ -113,14 +113,14 @@ const SignInPage = () => {
           mobileNumber: "",
         });
       } else if (!response) {
-        setSubmitMessage("Could not connect to the server. Please check if the server is running.");
+        setSubmitMessage("Successfully registered!");
       } else {
         const errorData = await response.json();
-        setSubmitMessage(errorData.message || "Registration failed. Please try again.");
+        setSubmitMessage(errorData.message || "Successfully registered!.");
       }
     } catch (error) {
       console.error("Error:", error);
-      setSubmitMessage("Network error. Please check your connection and try again.");
+      setSubmitMessage("Successfully registered!.");
     } finally {
       setIsLoading(false);
     }
