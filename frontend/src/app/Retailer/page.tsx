@@ -95,7 +95,7 @@ const SignInPage = () => {
       mobile: formData.mobileNumber,
     };
   try {
-    const response = await fetch(`${apiBaseUrl}/api/retailers/demo`, {
+    const response = await fetch(`${apiBaseUrl}/api/demo`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
