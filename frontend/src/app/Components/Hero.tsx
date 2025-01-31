@@ -9,12 +9,12 @@ const heroContent = [
   {
     title: ["Experience Fashion", "like never before"],
     description: "Join us as we use AI to take your shopping and fashion experience to the next level",
-    image: "/images/Group 5.jpg",
+    image: "/images/modde1.jpg",
   },
   {
     title: ["AI-Powered", "Style Recommendations"],
     description: "Get personalized fashion suggestions tailored just for you",
-    image: "/images/Group 6.png",
+    image: "/images/modde.jpg",
   },
   {
     title: ["Virtual Try-On", "Technology"],
@@ -25,7 +25,7 @@ const heroContent = [
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const slideRefs = useRef(heroContent.map(() => useRef(null)))
+  const slideRefs = useRef(heroContent.map(() => ({ current: null })))
   const titleRefs = useRef(heroContent.map(() => [{ current: null }, { current: null }]))
   const descriptionRefs = useRef(heroContent.map(() => ({ current: null })))
   const imageRefs = useRef(heroContent.map(() => ({ current: null })))
@@ -108,7 +108,7 @@ export default function Hero() {
   }, [currentSlide])
 
   return (
-    <section className={`${styles.heroSection} bg-white relative h-screen overflow-hidden`}>
+    <section className={`${styles.heroSection} bg-white relative min-h-screen overflow-hidden`}>
       <div className="w-full h-full absolute top-0 left-0 flex items-center justify-center">
         {heroContent.map((content, index) => (
           <div
@@ -116,9 +116,9 @@ export default function Hero() {
             ref={slideRefs.current[index]}
             className={`${styles.heroSlide} absolute w-full h-full flex items-center justify-center`}
           >
-            <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h1 className={`${styles.heroTitle} text-[#333]`}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              <div className="text-center lg:text-left">
+                <h1 className={`${styles.heroTitle} text-[#333] text-3xl sm:text-4xl md:text-5xl lg:text-6xl`}>
                   {content.title.map((part, i) => (
                     <span
                       key={i}
@@ -129,26 +129,32 @@ export default function Hero() {
                     </span>
                   ))}
                 </h1>
-                <Image
-                  src="/images/Vector 4.png"
-                  alt="Decoration"
-                  width={291}
-                  height={200}
-                  className="block -translate-y-10"
-                />
-                <p ref={descriptionRefs.current[index]} className={`${styles.heroDescription} text-[#666]`}>
+                <div className="mt-4 mb-6">
+                  <Image
+                    src="/images/Vector 4.png"
+                    alt="Decoration"
+                    width={291}
+                    height={200}
+                    className="inline-block w-auto h-auto max-w-full"
+                  />
+                </div>
+                <p
+                  ref={descriptionRefs.current[index]}
+                  className={`${styles.heroDescription} text-[#666] text-lg sm:text-xl`}
+                >
                   {content.description}
                 </p>
               </div>
               <div className="relative" ref={imageRefs.current[index]}>
-                <Image
-                  src={content.image || "/placeholder.svg"}
-                  alt="Hero Image"
-                  width={1000}
-                  height={1000}
-                  sizes="100vw"
-                  className="object-contain w-full h-full"
-                />
+                <div className="aspect-square overflow-hidden rounded-full glow-animation">
+                  <Image
+                    src={content.image || "/placeholder.svg"}
+                    alt="Hero Image"
+                    width={1000}
+                    height={1000}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
               </div>
             </div>
           </div>

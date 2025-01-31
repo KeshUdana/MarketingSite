@@ -22,14 +22,11 @@ export default function Header() {
   }, [])
 
   useEffect(() => {
-    // Prevent body scroll when menu is open
     if (isMenuOpen) {
       document.body.style.overflow = "hidden"
     } else {
       document.body.style.overflow = "unset"
     }
-
-    // Cleanup function
     return () => {
       document.body.style.overflow = "unset"
     }
@@ -91,24 +88,23 @@ export default function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ${
+      className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 mb- ${
         scrolled ? "bg-white/90 backdrop-blur-md shadow-md py-2" : "bg-transparent py-4"
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-      <Link href="/" className="relative z-10">
-    <div className="relative w-70 h-36 sm:w-44 sm:h-18 md:w-48 md:h-20">
-      <Image
-        src="/images/Component 1.png"
-        alt="Modde Logo"
-        fill
-        sizes="(max-width: 2040px) 256px, (max-width: 868px) 180px, 192px"
-        className="object-contain"
-        priority
-      />
-    </div>
-  </Link>
-
+        <Link href="/" className="relative z-10">
+          <div className="relative w-52 h-26 sm:w-44 sm:h-22 md:w-48 md:h-24">
+            <Image
+              src="/images/Component 1.png"
+              alt="Modde Logo"
+              fill
+              sizes="(max-width: 40px) 208px, (max-width: 1068px) 176px, 192px"
+              className="object-contain"
+              priority
+            />
+          </div>
+        </Link>
         <nav className="hidden lg:flex items-center space-x-8">
           {navItems.map(({ id, label }) => (
             <motion.button
@@ -122,10 +118,9 @@ export default function Header() {
             </motion.button>
           ))}
         </nav>
-
         <div className="hidden lg:flex space-x-4">
           {socialIcons.map(({ href, bgSrc, iconSrc }, index) => (
-            <SocialIcon key={index} href={href} bgSrc={bgSrc} iconSrc={iconSrc} />
+            <SocialIcon key={index} SocialIcon key={index} href={href} bgSrc={bgSrc} iconSrc={iconSrc} />
           ))}
         </div>
 
@@ -149,7 +144,6 @@ export default function Header() {
           </div>
         </motion.button>
       </div>
-
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -207,7 +201,6 @@ export default function Header() {
     </motion.header>
   )
 }
-
 function SocialIcon({ href, bgSrc, iconSrc }: { href: string; bgSrc: string; iconSrc: string }) {
   return (
     <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
