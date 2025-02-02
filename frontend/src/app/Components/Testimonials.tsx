@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger)
 const teamMembers = [
   {
     name: "Keshawa Udana",
-    title: "ML mode training, deploying & server-side development",
+    title: "ML model training, deploying & server-side development",
     description: "I lead my team and also train & deploy ML models",
     image: "/images/Keshawa.jpeg",
     github: "https://github.com/KeshUdana",
