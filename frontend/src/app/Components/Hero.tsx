@@ -8,7 +8,7 @@ const heroContent = [
   {
     title: ["Experience Fashion", "like never before"],
     description: "Join us as we use AI to take your shopping and fashion experience to the next level",
-    image: "/images/modde6.jpg",
+    image: "/images/pic1.jpg",
   },
   {
     title: ["AI-Powered", "Style Recommendations"],
@@ -17,7 +17,7 @@ const heroContent = [
   },
   {
     "title": ["Retailer Partnership", "Business Growth"],
-    "description": "Partner with us to expand your retail business, connect with more customers, and boost sales through our innovative platform.",
+    "description": "Partner with us to expand your retail business, connect with more customers,  boost sales through our innovative platform,and gain curated analytics made for you.",
     "image": "/images/modde.jpg"
   }
   
