@@ -13,26 +13,26 @@ gsap.registerPlugin(ScrollTrigger);
 const features = [
   {
     title: "Enhance Customer Reach",
-    description: "Connect your products with a wider audience through AI-driven recommendations.",
+    description: "Connect your products with a wider audience ",
     icon: "/images/website.png",
     bgColor: "bg-[#ffded4]",
   },
   {
-    title: "Streamline Product Discovery",
-    description: "Help customers find similar products effortlessly by uploading an image.",
-    icon: "/images/mobilephone.png",
+    title: "Boost Sales",
+    description: "Contribute by connecitng your stocks with our users",
+    icon: "/images/rocket.png",
     bgColor: "bg-[#ffeed4]",
   },
   {
-    title: "Boost Local Sales",
-    description: "Promote Sri Lankan retailers and increase visibility within the local market.",
+    title:"Get realtime sales analytics ",
+    description: "Get reltime data and sales analytics to take clearer business decisions",
     icon: "/images/mobilephone.png",
     bgColor: "bg-[#d4f0ff]",
   },
   {
-    title: "Improve Shopping Experience",
-    description: "Deliver a personalized and intuitive shopping journey for your customers.",
-    icon: "/images/rocket.png",
+    title: "Get your very own curated platform",
+    description: "We build bespoke systems curated for data anayltics which help make you take business decisions",
+    icon: "/images/website.png",
     bgColor: "bg-[#ffd4d4]",
   },
 ];

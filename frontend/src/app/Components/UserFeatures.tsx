@@ -9,27 +9,27 @@ gsap.registerPlugin(ScrollTrigger)
 
 const features = [
   {
-    title: "Snap, Style, and Slay",
+    title: "Snap it !",
     description:
       "Take a photo of what inspires you. Our AI finds similar products so you can style your look and slay effortlessly.",
     icon: "/images/website.png",
     bgColor: "bg-[#ffded4]",
   },
   {
-    title: "Find Your Perfect Match",
-    description: "Upload a photo and let our AI match it to the best products for your style.",
+    title: "Style it!",
+    description: "Filter it out and play around to get what you want ",
     icon: "/images/mobilephone.png",
     bgColor: "bg-[#ffeed4]",
   },
   {
-    title: "Shop What You Love",
+    title: "Slay!",
     description: "Discover products inspired by your snaps and bring your vision to life.",
     icon: "/images/mobilephone.png",
     bgColor: "bg-[#d4f0ff]",
   },
   {
     title: "Personalized Shopping",
-    description: "Experience a curated journey tailored to your style preferences with just one snap.",
+    description: "Get your own wardrobe just curated for your taste",
     icon: "/images/rocket.png",
     bgColor: "bg-[#ffd4d4]",
   },
