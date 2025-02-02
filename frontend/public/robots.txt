@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.getmodde.com
+
+# Sitemaps
+Sitemap: https://www.getmodde.com/sitemap.xml
