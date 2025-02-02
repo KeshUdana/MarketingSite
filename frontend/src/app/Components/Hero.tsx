@@ -13,12 +13,12 @@ const heroContent = [
   {
     title: ["AI-Powered", "Style Recommendations"],
     description: "Get personalized fashion suggestions tailored just for you",
-    image: "/images/modde.jpg",
+    image: "/images/pic2.jpg",
   },
   {
     "title": ["Retailer Partnership", "Business Growth"],
     "description": "Partner with us to expand your retail business, connect with more customers,  boost sales through our innovative platform,and gain curated analytics made for you.",
-    "image": "/images/dashboard.png"
+    "image": "/images/analytics.jpg"
   }
   
 ]
