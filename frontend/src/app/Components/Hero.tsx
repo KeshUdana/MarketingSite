@@ -2,14 +2,13 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import styles from "./LandingPage.module.css"
 import { gsap } from "gsap"
 
 const heroContent = [
   {
     title: ["Experience Fashion", "like never before"],
     description: "Join us as we use AI to take your shopping and fashion experience to the next level",
-    image: "/images/modde1.jpg",
+    image: "/images/modde6.jpg",
   },
   {
     title: ["AI-Powered", "Style Recommendations"],
@@ -17,10 +16,11 @@ const heroContent = [
     image: "/images/modde.jpg",
   },
   {
-    title: ["Virtual Try-On", "Technology"],
-    description: "See how clothes look on you without stepping into a fitting room",
-    image: "/images/Group 7.png",
-  },
+    "title": ["Retailer Partnership", "Business Growth"],
+    "description": "Partner with us to expand your retail business, connect with more customers, and boost sales through our innovative platform.",
+    "image": "/images/modde.jpg"
+  }
+  
 ]
 
 export default function Hero() {
@@ -108,17 +108,17 @@ export default function Hero() {
   }, [currentSlide])
 
   return (
-    <section className={`${styles.heroSection} bg-white relative min-h-screen overflow-hidden`}>
+    <section className="bg-white relative min-h-screen overflow-hidden">
       <div className="w-full h-full absolute top-0 left-0 flex items-center justify-center">
         {heroContent.map((content, index) => (
           <div
             key={index}
             ref={slideRefs.current[index]}
-            className={`${styles.heroSlide} absolute w-full h-full flex items-center justify-center`}
+            className="absolute w-full h-full flex items-center justify-center"
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              <div className="text-center lg:text-left">
-                <h1 className={`${styles.heroTitle} text-[#333] text-3xl sm:text-4xl md:text-5xl lg:text-6xl`}>
+              <div className="text-center lg:text-left order-2 lg:order-1">
+                <h1 className="text-[#333] text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
                   {content.title.map((part, i) => (
                     <span
                       key={i}
@@ -138,15 +138,12 @@ export default function Hero() {
                     className="inline-block w-auto h-auto max-w-full"
                   />
                 </div>
-                <p
-                  ref={descriptionRefs.current[index]}
-                  className={`${styles.heroDescription} text-[#666] text-lg sm:text-xl`}
-                >
+                <p ref={descriptionRefs.current[index]} className="text-[#666] text-lg sm:text-xl">
                   {content.description}
                 </p>
               </div>
-              <div className="relative" ref={imageRefs.current[index]}>
-                <div className="aspect-square overflow-hidden rounded-full glow-animation">
+              <div className="relative order-1 lg:order-2" ref={imageRefs.current[index]}>
+                <div className="aspect-square overflow-hidden rounded-full">
                   <Image
                     src={content.image || "/placeholder.svg"}
                     alt="Hero Image"
