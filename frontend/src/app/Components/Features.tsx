@@ -19,19 +19,19 @@ const features = [
   },
   {
     title: "Boost Sales",
-    description: "Contribute by connecitng your stocks with our users",
+    description: "Contribute by connecting your stocks with our users",
     icon: "/images/rocket.png",
     bgColor: "bg-[#ffeed4]",
   },
   {
     title:"Get realtime sales analytics ",
-    description: "Get reltime data and sales analytics to take clearer business decisions",
+    description: "Get realtime data and sales analytics to take business decisions",
     icon: "/images/mobilephone.png",
     bgColor: "bg-[#d4f0ff]",
   },
   {
     title: "Get your very own curated platform",
-    description: "We build bespoke systems curated for data anayltics which help make you take business decisions",
+    description: "We build bespoke systems with for data analytics to take your business to the next level",
     icon: "/images/website.png",
     bgColor: "bg-[#ffd4d4]",
   },
