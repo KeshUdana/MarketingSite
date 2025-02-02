@@ -8,7 +8,7 @@ const heroContent = [
   {
     title: ["Experience Fashion", "like never before"],
     description: "Join us as we use AI to take your shopping and fashion experience to the next level",
-    image: "/images/modde6.jpg",
+    image: "/images/pic1.jpg",
   },
   {
     title: ["AI-Powered", "Style Recommendations"],
