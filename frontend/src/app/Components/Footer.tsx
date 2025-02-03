@@ -19,8 +19,8 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-center group cursor-pointer">
                 <Mail className="mr-3 h-5 w-5 text-pink-400 group-hover:text-blue-300 transition-colors" />
-                <a href="mailto:info@moddemarketing.com" className="group-hover:text-blue-300 transition-colors">
-                  info@moddemarketing.com
+                <a href="mailto:moddeapp@gmail.com" className="group-hover:text-blue-300 transition-colors">
+                moddeapp@gmail.com
                 </a>
               </li>
               <li className="flex items-center group cursor-pointer">
@@ -32,14 +32,14 @@ export default function Footer() {
               <li className="flex items-start group cursor-pointer">
                 <MapPin className="mr-3 h-5 w-5 text-pink-400 group-hover:text-blue-300 transition-colors mt-1" />
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=123+Marketing+St,+City,+State+12345"
+                  href="https://maps.app.goo.gl/3zUYtAqdTYtnjuvJ6"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group-hover:text-blue-300 transition-colors"
                 >
-                  123 Marketing St,
+                  Colombo,
                   <br />
-                  City, State 12345
+                  Srilanka
                 </a>
               </li>
             </ul>
@@ -49,7 +49,7 @@ export default function Footer() {
             <h3 className="text-2xl font-bold mb-6 text-white-400">Stay Connected</h3>
             <div className="flex space-x-6">
               <a
-                href="https://www.instagram.com/moddemarketing"
+                href="https://www.instagram.com/modde_fashion_studio/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-400 transition-colors cursor-pointer"
@@ -57,7 +57,7 @@ export default function Footer() {
                 <Instagram className="h-8 w-8" />
               </a>
               <a
-                href="https://www.linkedin.com/company/moddemarketing"
+                href="https://www.linkedin.com/company/105976842/admin/dashboard/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-400 transition-colors cursor-pointer"

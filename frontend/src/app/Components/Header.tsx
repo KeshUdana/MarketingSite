@@ -1,43 +1,43 @@
-"use client";
+"use client"
 
-import { useState, useEffect, useCallback, useMemo } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { useState, useEffect, useCallback, useMemo } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { useRouter, usePathname } from "next/navigation"
+import { motion } from "framer-motion"
 
 export default function Header() {
-  const router = useRouter();
-  const pathname = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const router = useRouter()
+  const pathname = usePathname()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const handleScroll = () => setScrolled(window.scrollY > 10)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
+    document.body.style.overflow = isMenuOpen ? "hidden" : "unset"
     return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isMenuOpen]);
+      document.body.style.overflow = "unset"
+    }
+  }, [isMenuOpen])
 
-  const toggleMenu = useCallback(() => setIsMenuOpen((prev) => !prev), []);
+  const toggleMenu = useCallback(() => setIsMenuOpen((prev) => !prev), [])
 
   const handleNavigation = useCallback(
     (sectionId: string) => {
-      setIsMenuOpen(false);
+      setIsMenuOpen(false)
       if (pathname === "/") {
-        document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
       } else {
-        router.push(`/#${sectionId}`);
+        router.push(`/#${sectionId}`)
       }
     },
-    [pathname, router]
-  );
+    [pathname, router],
+  )
 
   const navItems = useMemo(
     () => [
@@ -46,15 +46,15 @@ export default function Header() {
       { id: "Features", label: "For Business" },
       { id: "Team", label: "The Team" },
     ],
-    []
-  );
+    [],
+  )
 
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 mb-24 ${
+      className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 mb-8 ${
         scrolled ? "bg-white/90 backdrop-blur-md shadow-md py-2" : "bg-transparent py-4"
       }`}
     >
@@ -92,5 +92,6 @@ export default function Header() {
         </motion.button>
       </div>
     </motion.header>
-  );
+  )
 }
+

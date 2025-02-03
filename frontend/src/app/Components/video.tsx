@@ -1,9 +1,10 @@
 "use client"
 
 import type React from "react"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { Volume2, VolumeX } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -12,6 +13,7 @@ const AutoPlayVideo: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const descriptionRef = useRef<HTMLParagraphElement>(null)
+  const [isMuted, setIsMuted] = useState(true)
 
   useEffect(() => {
     const video = videoRef.current
@@ -83,6 +85,13 @@ const AutoPlayVideo: React.FC = () => {
     }
   }, [])
 
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted
+      setIsMuted(!isMuted)
+    }
+  }
+
   return (
     <div
       ref={containerRef}
@@ -94,12 +103,12 @@ const AutoPlayVideo: React.FC = () => {
       <p ref={descriptionRef} className="text-center mb-8 text-gray-700 max-w-3xl text-lg">
         Experience the best features and seamless performance.
       </p>
-      <div className="relative w-full max-w-[60vw] rounded-lg overflow-hidden shadow-xl">
+      <div className="relative w-full max-w-[50vw] rounded-lg overflow-hidden shadow-xl">
         <video
           ref={videoRef}
           className="w-full h-auto"
           loop
-          muted
+          muted={isMuted}
           playsInline
           preload="metadata"
           poster="/placeholder.svg?height=600&width=1200"
@@ -107,10 +116,15 @@ const AutoPlayVideo: React.FC = () => {
           <source src="./images/modde.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        <button
+          onClick={toggleMute}
+          className="absolute bottom-4 right-4 bg-gray-800 text-white p-2 rounded-full shadow-md hover:bg-gray-700 flex items-center justify-center"
+        >
+          {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+        </button>
       </div>
     </div>
   )
 }
 
 export default AutoPlayVideo
-

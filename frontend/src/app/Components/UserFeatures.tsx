@@ -84,23 +84,23 @@ export default function UserFeatures() {
       )
 
       // Animate the feature cards
-      tl.fromTo(featureElements, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.2 }, "-=0.3")
+      tl.fromTo(featureElements, { opacity: 1, y: 50 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.2 }, "-=0.3")
 
       // Add a parallax effect to the feature cards
-      featureElements.forEach((feature, index) => {
-        if (feature) {
-          gsap.to(feature, {
-            y: -50,
-            ease: "none",
-            scrollTrigger: {
-              trigger: feature,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true,
-            },
-          })
-        }
-      })
+      // featureElements.forEach((feature, index) => {
+      //   if (feature) {
+      //     gsap.to(feature, {
+      //       y: -50,
+      //       ease: "none",
+      //       scrollTrigger: {
+      //         trigger: feature,
+      //         start: "top bottom",
+      //         end: "bottom top",
+      //         scrub: true,
+      //       },
+      //     })
+      //   }
+      // })
 
       // Add a subtle rotation to the feature icons
       featureElements.forEach((feature) => {
@@ -169,7 +169,7 @@ export default function UserFeatures() {
       <section ref={sectionRef} className="pt-20 pb-0 bg-[#ffd4d4] relative min-h-[80vh] flex flex-col overflow-hidden">
         <div
           ref={containerRef}
-          className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-col justify-between relative z-10"
+          className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-col justify-between relative z-20"
         >
           <div className="text-center mb-10">
             <h2 ref={titleRef} className="text-3xl sm:text-4xl font-bold text-[#333] mb-4">
@@ -187,7 +187,7 @@ export default function UserFeatures() {
                 ref={(el) => {
                   featuresRef.current[index] = el
                 }}
-                className="bg-white bg-opacity-100 rounded-lg shadow-md p-6 hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-2 z-10"
+                className="bg-white bg-opacity-100 rounded-lg shadow-md p-6 hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-2 z-30 opacity-100"
               >
                 <div
                   className={`${feature.bgColor} rounded-full w-16 h-16 sm:w-20 sm:h-20 mb-6 flex items-center justify-center mx-auto transition-transform duration-300 hover:rotate-12`}
