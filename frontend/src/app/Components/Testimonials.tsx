@@ -38,7 +38,7 @@ const teamMembers = [
     name: "Sandara Hettiarachchi",
     title: "Client-side development mogul",
     description: "I bring the design to life",
-    image: "/images/sandara.jpeg",
+    image: "/images/sandara.png",
     github: "https://github.com/sandaraapoorwa",
     linkedin: "https://www.linkedin.com/in/sandara-hettiarachchi-830bb6202/",
   },
@@ -53,7 +53,7 @@ const teamMembers = [
   {
     name: "Nelith Nethsanda",
     title: "Client Side development",
-    description: "I help make the client side come to life",
+    description: "I make the client side come to life",
     image: "/images/nelith.jpeg",
     github: "https://github.com/nelith-2002",
     linkedin: "https://www.linkedin.com/in/nelith-nethsanda-86bb28271/",
@@ -93,7 +93,10 @@ export default function TeamMembers() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="min-h-screen flex items-center justify-center bg-gray-100 py-10">
+    <section
+      ref={sectionRef}
+      className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#fff1f1] to-[#ffe6e6] py-10"
+    >
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-4xl font-bold text-gray-900 mb-6">Meet the Team</h2>
         <p className="text-lg text-gray-700 mb-10">Get to know the talented individuals who make Modde what it is.</p>

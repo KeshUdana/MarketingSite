@@ -1,15 +1,18 @@
 "use client"
+
 import { useEffect, useRef } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import styles from "./LandingPage.module.css"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-gsap.registerPlugin(ScrollTrigger)
+import { TextPlugin } from "gsap/TextPlugin"
+import Head from "next/head"
+
+gsap.registerPlugin(ScrollTrigger, TextPlugin)
 
 const features = [
   {
-    title: "Snap it !",
+    title: "Snap it!",
     description:
       "Take a photo of what inspires you. Our AI finds similar products so you can style your look and slay effortlessly.",
     icon: "/images/website.png",
@@ -17,7 +20,7 @@ const features = [
   },
   {
     title: "Style it!",
-    description: "Filter it out and play around to get what you want ",
+    description: "Filter it out and play around to get what you want",
     icon: "/images/mobilephone.png",
     bgColor: "bg-[#ffeed4]",
   },
@@ -40,52 +43,78 @@ export default function UserFeatures() {
   const featuresRef = useRef<(HTMLDivElement | null)[]>([])
   const sectionRef = useRef<HTMLElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  const subtitleRef = useRef<HTMLParagraphElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const featureElements = featuresRef.current
     const sectionElement = sectionRef.current
     const buttonElement = buttonRef.current
+    const titleElement = titleRef.current
+    const subtitleElement = subtitleRef.current
+    const containerElement = containerRef.current
 
-    if (sectionElement && featureElements.every((el) => el !== null)) {
-      gsap.from(sectionElement, {
-        opacity: 0,
-        scale: 0.9,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionElement,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-      })
-
+    if (
+      sectionElement &&
+      featureElements.every((el) => el !== null) &&
+      titleElement &&
+      subtitleElement &&
+      containerElement
+    ) {
+      // Create a timeline for the entire section
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionElement,
-          start: "top 60%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1,
         },
       })
 
-      tl.from(featureElements, {
-        y: 100,
-        opacity: 0,
-        rotateX: -20,
-        scale: 1,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power3.out",
+      // Animate the section background
+      tl.fromTo(sectionElement, { borderTopLeftRadius: "0px" }, { borderTopLeftRadius: "400px", duration: 1 })
+
+      // Animate the title and subtitle
+      tl.fromTo(
+        [titleElement, subtitleElement],
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 0.5, stagger: 0.2 },
+        "-=0.5",
+      )
+
+      // Animate the feature cards
+      tl.fromTo(featureElements, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.2 }, "-=0.3")
+
+      // Add a parallax effect to the feature cards
+      featureElements.forEach((feature, index) => {
+        if (feature) {
+          gsap.to(feature, {
+            y: -50,
+            ease: "none",
+            scrollTrigger: {
+              trigger: feature,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          })
+        }
       })
 
-      featureElements.forEach((featureEl) => {
-        gsap.to(featureEl, {
-          y: "random(-10, 10)",
-          repeat: -1,
-          yoyo: true,
-          duration: 2,
-          ease: "sine.inOut",
-        })
+      // Add a subtle rotation to the feature icons
+      featureElements.forEach((feature) => {
+        if (feature) {
+          const icon = feature.querySelector("div")
+          if (icon) {
+            gsap.to(icon, {
+              rotation: 360,
+              duration: 20,
+              repeat: -1,
+              ease: "linear",
+            })
+          }
+        }
       })
     }
 
@@ -96,7 +125,14 @@ export default function UserFeatures() {
         repeat: -1,
         yoyo: true,
         ease: "power3.inOut",
-        backgroundColor: "#ffffff",
+      })
+
+      gsap.to(buttonElement, {
+        boxShadow: "0 0 20px rgba(255, 255, 255, 0.8)",
+        duration: 1.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
       })
     }
   }, [])
@@ -106,49 +142,66 @@ export default function UserFeatures() {
   }
 
   return (
-    <section
-      ref={sectionRef}
-      className="py-16 pb-12 bg-[#ffd4d4] rounded-tl-[400px] relative min-h-screen flex flex-col"
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-col justify-between">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#333] mb-4">Snap, Style, and Slay</h2>
-          <p className="text-lg sm:text-2xl text-[#666]">Effortless Style with Just One Snap</p>
-        </div>
+    <>
+      <Head>
+        <title>Snap, Style, and Slay | Fashion Inspiration</title>
+        <meta
+          name="description"
+          content="Snap photos of your favorite clothing items and use AI to find similar products and style your look. Shop personalized fashion curated just for you!"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Snap, Style, and Slay | Fashion Inspiration" />
+        <meta
+          property="og:description"
+          content="Snap photos of your favorite clothing items and use AI to find similar products and style your look. Shop personalized fashion curated just for you!"
+        />
+        <meta property="og:image" content="/images/website.png" />
+        <meta property="og:url" content="https://yourwebsite.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Snap, Style, and Slay | Fashion Inspiration" />
+        <meta
+          name="twitter:description"
+          content="Snap photos of your favorite clothing items and use AI to find similar products and style your look. Shop personalized fashion curated just for you!"
+        />
+        <meta name="twitter:image" content="/images/website.png" />
+      </Head>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              ref={(el) => {
-                if (el) {
-                  featuresRef.current[index] = el;
-                }
-              }}
-              className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-transform duration-300 hover:scale-105"
-            >
+      <section ref={sectionRef} className="pt-20 pb-0 bg-[#ffd4d4] relative min-h-[80vh] flex flex-col overflow-hidden">
+        <div
+          ref={containerRef}
+          className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-col justify-between relative z-10"
+        >
+          <div className="text-center mb-10">
+            <h2 ref={titleRef} className="text-3xl sm:text-4xl font-bold text-[#333] mb-4">
+              Snap, Style, and Slay
+            </h2>
+            <p ref={subtitleRef} className="text-lg sm:text-2xl text-[#666]">
+              Discover the perfect wardrobe inspired by your favorite looks.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {features.map((feature, index) => (
               <div
-                className={`${feature.bgColor} rounded-full w-16 h-16 sm:w-20 sm:h-20 mb-6 flex items-center justify-center mx-auto`}
+                key={index}
+                ref={(el) => {
+                  featuresRef.current[index] = el
+                }}
+                className="bg-white bg-opacity-100 rounded-lg shadow-md p-6 hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-2 z-10"
               >
-                <Image src={feature.icon || "/placeholder.svg"} alt={feature.title} width={40} height={40} />
+                <div
+                  className={`${feature.bgColor} rounded-full w-16 h-16 sm:w-20 sm:h-20 mb-6 flex items-center justify-center mx-auto transition-transform duration-300 hover:rotate-12`}
+                >
+                  <Image src={feature.icon || "/placeholder.svg"} alt={feature.title} width={40} height={40} />
+                </div>
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 text-[#333] text-center">{feature.title}</h3>
+                <p className="text-sm sm:text-base text-[#666] leading-relaxed text-center">{feature.description}</p>
               </div>
-              <h3 className="text-lg sm:text-xl font-semibold mb-2 text-[#333] text-center">{feature.title}</h3>
-              <p className="text-sm sm:text-base text-[#666] leading-relaxed text-center">
-                {feature.description}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-        <div className="mt-8 flex justify-center pt-20 pb-5">
-          <button
-            ref={buttonRef}
-            className={`${styles.ctaButton} px-8 py-3 text-white font-bold rounded-full shadow-md hover:shadow-lg`}
-            onClick={handleRequest}
-          >
-            Join the Waitlist!
-          </button>
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
+
