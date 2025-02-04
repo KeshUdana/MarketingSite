@@ -8,13 +8,13 @@ const heroContent = [
   {
     title: ["Experience Fashion", "like never before"],
     description: "Join us as we use AI to take your shopping and fashion experience to the next level",
-    image: "/images/pic1.jpg",
+    image: "/images/modde4.png",
   },
   {
     title: ["Mix & Match ", "Your Signature Style!"],
     description:
       "Explore endless fashion possibilities with personalized style recommendations designed to match your unique personality and taste.",
-    image: "/images/pic2.jpg",
+    image: "/images/modde.png",
   },
   {
     title: ["Retailer Partnership", "Business Growth"],
