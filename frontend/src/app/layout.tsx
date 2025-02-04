@@ -12,7 +12,7 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: 'Modde Marketing',
+  title: 'Snap.Style.Slay !',
   description: 'We help you grow your business',
 };
 
