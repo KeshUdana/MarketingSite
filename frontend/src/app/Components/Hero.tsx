@@ -11,13 +11,13 @@ const heroContent = [
     image: "/images/pic1.jpg",
   },
   {
-    title: ["Mix & Match ", "Your Signature Style!"],
+    title: ["Mix & Match to ", "Your Signature Style!"],
     description:
       "Explore endless fashion possibilities with personalized style recommendations designed to match your unique personality and taste.",
     image: "/images/modde.png",
   },
   {
-    title: ["Retailer Partnership", "Business Growth"],
+    title: ["Retailer Partnership &", "Business Growth"],
     description:
       "Partner with us to expand your retail business, connect with more customers,  boost sales through our innovative platform,and gain curated analytics made for you.",
     image: "/images/analytics.png",
