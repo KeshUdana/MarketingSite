@@ -10,7 +10,7 @@ export default function Footer() {
             <Image src="/images/Component 2.png" alt="Modde Marketing" width={150} height={150} className="mb-4" />
             <p className="text-gray-300 max-w-md text-center md:text-left leading-relaxed">
               Modde is dedicated to helping brands build meaningful connections with their audiences through innovative
-              marketing strategies that inspire and engage.
+              technological strategies and data analytics
             </p>
           </div>
 
