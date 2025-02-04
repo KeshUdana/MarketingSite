@@ -1,9 +1,12 @@
+"use client"
+
 import styles from "./LandingPage.module.css"
 import Hero from "./Hero"
 import Features from "./Features"
 import UserFeatures from "./UserFeatures"
 import Testimonials from "./Testimonials"
 import ReactPlayerComponent from "./video"
+
 
 export default function LandingPage() {
   return (

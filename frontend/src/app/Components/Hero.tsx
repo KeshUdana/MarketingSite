@@ -11,16 +11,17 @@ const heroContent = [
     image: "/images/pic1.jpg",
   },
   {
-    title: ["AI-Powered", "Style Recommendations"],
-    description: "Get personalized fashion suggestions tailored just for you",
+    title: ["Mix & Match ", "Your Signature Style!"],
+    description:
+      "Explore endless fashion possibilities with personalized style recommendations designed to match your unique personality and taste.",
     image: "/images/pic2.jpg",
   },
   {
-    "title": ["Retailer Partnership", "Business Growth"],
-    "description": "Partner with us to expand your retail business, connect with more customers,  boost sales through our innovative platform,and gain curated analytics made for you.",
-    "image": "/images/analytics.jpg"
-  }
-  
+    title: ["Retailer Partnership", "Business Growth"],
+    description:
+      "Partner with us to expand your retail business, connect with more customers,  boost sales through our innovative platform,and gain curated analytics made for you.",
+    image: "/images/analytics.png",
+  },
 ]
 
 export default function Hero() {
@@ -109,7 +110,7 @@ export default function Hero() {
 
   return (
     <section className="bg-white relative min-h-screen overflow-hidden">
-      <div className="w-full h-full absolute top-0 left-0 flex items-center justify-center">
+      <div className="w-full h-full absolute top-10 left-0 flex items-center justify-center">
         {heroContent.map((content, index) => (
           <div
             key={index}
@@ -143,12 +144,12 @@ export default function Hero() {
                 </p>
               </div>
               <div className="relative order-1 lg:order-2" ref={imageRefs.current[index]}>
-                <div className="aspect-square overflow-hidden rounded-full">
+                <div className="aspect-square overflow-hidden rounded-2xl max-w-[450px] mx-auto shadow-lg">
                   <Image
                     src={content.image || "/placeholder.svg"}
                     alt="Hero Image"
-                    width={1000}
-                    height={1000}
+                    width={450}
+                    height={450}
                     className="object-cover w-full h-full"
                   />
                 </div>
